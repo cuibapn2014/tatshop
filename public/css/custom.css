@@ -1,0 +1,9 @@
+*{
+	padding:0;
+	margin:0;
+}
+body{
+	background-image:url('https://images.unsplash.com/photo-1524397057410-1e775ed476f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80');
+	background-size:cover;
+	//background-position:center;
+}

@@ -1,0 +1,17 @@
+$(document).ready(function(){
+		$('#btnAdd').click(function(event){
+			event.preventDefault();
+		$('#photo').append('<input class="form-control mt-2" type="text" name="image[]" placeholder="Nhập link hình ảnh"/>');		
+	});
+	
+	$('#btnSize').click(function(event){
+			event.preventDefault();
+		$('#size').append('<input class="form-control mt-2" type="text" name="size[]"/>');		
+	});
+	
+	$('#btnColor').click(function(event){
+			event.preventDefault();
+		$('#color').append('<input class="form-control mt-2" type="text" name="color[]"/>');		
+	});
+
+	});
