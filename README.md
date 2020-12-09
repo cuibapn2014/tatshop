@@ -81,3 +81,5 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 "# tatshop" 
 "# tatshop"  git init
 "# tatshop" 
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3f1762f9-6501-4f0e-a56e-34498d72eee9/deploy-status)](https://app.netlify.com/sites/tatshop/deploys)
