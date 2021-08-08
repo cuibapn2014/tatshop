@@ -1,0 +1,147 @@
+*{
+	padding:0;
+	margin:0;
+}
+
+body{
+    overflow-x: hidden;
+	padding-top:50px;
+}
+
+nav#header{
+	top:0;
+	width: 100%;
+	height: 50px;
+	position: absolute;
+	z-index: 1000;
+}
+.dashboard{
+	height:100%;
+	position:fixed;
+	left:0;
+	top:50;
+	transition:0.5s;
+	overflow-x:hidden;
+	z-index:1;
+	padding: 0px 0px 0px 0px !important;
+}
+.option{
+	display:block;
+	font-size:24px;
+	transition:0.3s;
+	padding:3px;
+}
+.option:hover{
+	text-decoration:none;
+	color:#fff;
+	background: #17a2b8;
+}
+#close{
+	font-size:36px !important;
+	color:#fff !important;
+	top:0;
+	right: 0pxt;
+	position: absolute;
+}
+
+#menu div{
+    white-space: nowrap;
+}
+.display_dashboard{
+	position:relative;
+	margin-left:385px;
+	transition:margin-left .5s;
+	float:left;
+}
+.item-option{
+	border:1px solid #fff;
+}
+.active{
+	background: #17a2b8;
+	color:#fff;
+}
+.content {
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+#notice{
+	width:100%;
+	height:100%;
+	position:fixed;
+	z-index:1000;
+	opacity: 0;
+	background:rgba(0,0,0,0.6);
+	top:0;
+	left:0;
+	transition: opacity ease 0.3s;
+}
+
+.thumbnail{
+	opacity: 0;
+	position: fixed;
+	transition: opacity ease-out 0.3s;
+        z-index: -1;
+}
+
+.pagination {
+    float:right;
+}
+@media (max-width: 575.98px) {
+		a#close, a.open{
+			display:block;
+		}
+        div.dashboard{
+                        width:0px;
+                }
+        div.display_dashboard{
+                margin-left:0px;
+		}
+		a.option{
+			width: 100% !important;
+		}
+}
+
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+		a#close, a.open{
+		display:block;
+		}
+        div.dashboard{
+                width:0px;
+        }
+        div.display_dashboard{
+                margin-left:0px;
+		}
+		a.option{
+			width: 100% !important;
+		}
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+	a#close, a.open{
+		display:block;
+	}
+	a.option{
+		width: 100% !important;
+	}
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+	a#close, a.open{
+		display:none;
+	}
+	a.option{
+		width: 100% !important;
+	}
+
+}
+
+@media (min-width: 1200px) {
+	a#close, a.open{
+		display:none;
+	}
+	a.option{
+		width: 100% !important;
+	}
+}
