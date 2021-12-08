@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Mail;
-use App\payment;
-use App\bill;
+use App\Payment;
+use App\Bill;
 use Redirect,Response,DB,Config;
 
 class EmailController extends Controller

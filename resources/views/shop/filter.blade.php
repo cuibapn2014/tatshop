@@ -14,47 +14,47 @@
         @if(count($filter) > 0)
         @foreach($filter as $filte)
         <a href="san-pham/{{$filte->id}}/{{$filte->_link}}" title="{{$filte->title}}">
-        <div class="card col-lg-3 col-md-4 col-sm-12 p-0 m-1 float-left">
-            @if($filte->discount > 0)
-            <span class="discount text-center">-{{$filte->discount}}%</span>
-            @endif
-            <div class="thumbnail">
-            <img id="img-{{$filte->id}}" data-src="{{$filte->thumbnail}}" style="object-fit:cover;" height="100%" width="100%" alt="{{$filte->title}}"/>
-            </div>
-            <p class="card-title p-1 text-dark">{{$filte->title}}</p>
-            <div class="w-100 col-12 d-inline-block mt-0" style="overflow:hidden;max-height:50px;">
-                <ul>
-            @php
-            if(!empty($filte->image->image)){
-		$data = $filte->image->image;
-		$img = json_decode($data,true);
-		$i = 0;
-        if(count($img) > 1){
-		foreach($img as $img){
-		echo '<li class="float-left rounded-circle mr-2 more-img" data-id="'.$filte->id.'" data-src="'.$img.'" style="background-image:url('.$img.');"></li>';
-		$i++;
-		}
-    }
-	}
-            @endphp
-</ul>
-</div>
-            <p class="p-1 text-dark font-weight-bold">
+            <div class="card col-lg-3 col-md-4 col-sm-12 p-0 m-1 float-left">
                 @if($filte->discount > 0)
-                <s class=font-weight-light>{{number_format($filte->price)}}<u>đ</u></s>
-                {{number_format($filte->price * (1-($filte->discount / 100)))}}<u>đ</u>
-                @else
-                {{number_format($filte->price)}}<u>đ</u>
+                <span class="discount text-center">-{{$filte->discount}}%</span>
                 @endif
-            </p>
-            <p class="p-1 act">
-                <a class="btn btn-outline-info btn-md" href="san-pham/{{$filte->id}}/{{$filte->_link}}">Mua ngay <i class="bi bi-bag-fill"></i></a>
-        </div>
+                <div class="thumbnail">
+                    <img id="img-{{$filte->id}}" data-src="{{$filte->thumbnail}}" style="object-fit:cover;"
+                        height="100%" width="100%" alt="{{$filte->title}}" />
+                </div>
+                <div class="w-100 col-12 d-inline-block mt-3" style="overflow:hidden;max-height:50px;">
+                    <ul>
+                        @php
+                        if(!empty($filte->image->image)){
+                        $data = $filte->image->image;
+                        $img = json_decode($data,true);
+                        $i = 0;
+                        if(count($img) > 1){
+                        foreach($img as $img){
+                        echo '<li class="float-left rounded-circle mr-2 more-img" data-id="'.$filte->id.'"
+                            data-src="'.$img.'" style="background-image:url('.$img.');"></li>';
+                        $i++;
+                        }
+                        }
+                        }
+                        @endphp
+                    </ul>
+                </div>
+                <p class="card-title p-1 text-dark">{{$filte->title}}</p>
+                <p class="p-1 text-dark font-weight-bold text-center mb-0">
+                    @if($filte->discount > 0)
+                    <s class=font-weight-light>{{number_format($filte->price)}}<u>đ</u></s>
+                    {{number_format($filte->price * (1-($filte->discount / 100)))}}<u>đ</u>
+                    @else
+                    {{number_format($filte->price)}}<u>đ</u>
+                    @endif
+                </p>
+            </div>
         </a>
         @endforeach
         <div class="col-12 w-100 text-right">
             {{$filter->links()}}
-</div>
+        </div>
         @else
         <p class='text-center'>Không tìm thấy kết quả</p>
         @endif

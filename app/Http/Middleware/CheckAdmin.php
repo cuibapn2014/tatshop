@@ -6,7 +6,7 @@ use Closure;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
-class CheckUser
+class CheckAdmin
 {
     /**
      * Handle an incoming request.
@@ -19,7 +19,7 @@ class CheckUser
     {
 		if(Auth::check()){
 			$user = Auth::user();
-			if($user->level == 0)
+			if($user->level >= 1)
 				return $next($request);
 				else
 					return redirect('login');

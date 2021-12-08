@@ -33,32 +33,37 @@
 
     </div>
     <div class="col-lg-6 col-md-12 col-sm-12 border add-card float-left p-2">
-        <div class="col-12 text-left">
+        <div class="col-12 text-left p-0">
             <h2 class="display-4" style="font-size:27px">{{$product->title}}</h2>
         </div>
-        <div class="col-12">
-            <p class="mb-1">Kho: {{$product->qty}} | Đã bán: {{$product->sold}}</p>
+        <div class="col-12 border-bottom m-2 p-0 border-dark d-flex flex-row justify-content-between">
+            <p class="mb-1">
+                <i class="fas fa-warehouse"></i> Còn {{$product->qty}} cái
+            <p>
+                <i class="bi bi-cart-check-fill"></i>
+                {{$product->sold}} cái
+            </p>
+            </p>
             @if($product->discount > 0)
             <h2 class="display-4" style="font-size:24px;"><s>{{number_format($product->price)}}đ</s> |
                 -{{$product->discount}}%</h2>
             @endif
         </div>
-        <hr />
         <div class="col-12 form-order">
             <form action="cart/add/{{$product->id}}" method="get">
                 <div class="form-group">
-                    <?php
-	if($product->attr->size != "[null]"){
-		$data = $product->attr->size;
-		$size = json_decode($data,true);
-		echo "<label>Chọn Size</label>: ";
-		echo "<select name='size'>";
-		foreach($size as $size){
-		echo '<option value="'.$size.'">'.$size.'</option>';
-		}
-		echo "</select>";
-	}
-	?>
+                    @php
+                    if($product->attr->size != "[null]"){
+                    $data = $product->attr->size;
+                    $size = json_decode($data,true);
+                    echo "<label>Chọn Size</label>: ";
+                    echo "<select name='size'>";
+                        foreach($size as $size){
+                        echo '<option value="'.$size.'">'.$size.'</option>';
+                        }
+                        echo "</select>";
+                    }
+                    @endphp
                 </div>
                 <div class="form-group">
                     <?php
@@ -93,11 +98,12 @@
                 @endif
                 @if($product->qty > 0)
                 <div class="form-group">
-                    <button class="btn btn-info" type="submit">Mua ngay <i class="bi bi-cart-plus-fill"></i></button>
+                    <button class="btn btn-info btn-pay" type="submit">Thêm vào giỏ <i
+                            class="bi bi-cart-plus-fill"></i></button>
                 </div>
                 @else
                 <div class="form-group">
-                    <a class="btn btn-secondary text-white">Hết hàng</a>
+                    <a class="btn btn-secondary text-white p-2">Hết hàng</a>
                 </div>
                 @endif
             </form>
@@ -129,24 +135,24 @@
                 <form action="san-pham/{{$product->id}}/{{$product->_link}}" method="post">
                     <input type="hidden" name="_token" value="{{csrf_token()}}" />
                     <div class="stars">
-                        <input class="star star-5" id="star-5" type="radio" name="star" />
+                        <input class="star star-5" id="star-5" type="radio" name="star" value="5" />
                         <label class="star star-5" for="star-5"></label>
-                        <input class="star star-4" id="star-4" type="radio" name="star" />
+                        <input class="star star-4" id="star-4" type="radio" name="star" value="4" />
                         <label class="star star-4" for="star-4"></label>
-                        <input class="star star-3" id="star-3" type="radio" name="star" />
+                        <input class="star star-3" id="star-3" type="radio" name="star" value="3" />
                         <label class="star star-3" for="star-3"></label>
-                        <input class="star star-2" id="star-2" type="radio" name="star" />
+                        <input class="star star-2" id="star-2" type="radio" name="star" value="2" />
                         <label class="star star-2" for="star-2"></label>
-                        <input class="star star-1" id="star-1" type="radio" name="star" />
+                        <input class="star star-1" id="star-1" type="radio" name="star" value="1" />
                         <label class="star star-1" for="star-1"></label>
                     </div>
                     <div class="form-group">
-                        <label for="comment">Viết đánh giá</label>
-                        <input id="comment" class="form-control" type="text" placeholder="Nhập đánh giá của bạn"
-                            name="comments" />
+                        <label for="comment">Nhập đánh giá</label>
+                        <input id="comment" class="form-control" type="text"
+                            placeholder="Bạn cảm thấy sản phẩm này như thế nào.." name="comments" />
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-info" type="submit">Đăng</button>
+                        <button class="btn btn-info" type="submit">Gửi đánh giá</button>
                     </div>
                 </form>
                 <hr />
@@ -155,11 +161,19 @@
                 @if(count($reply)>0)
                 @foreach($reply as $rep)
                 <div class="media">
-                    <img data-src="{{$rep->user->thumbnail}}" class="mr-3" width="64px" height="64px"
-                        style="object-fit:cover;" alt="...">
+                    <img data-src="{{strpos($rep->user->image,'ttps://') > 0 ? $rep->user->image : 'image/'.$rep->user->image}}"
+                        class="mr-3 rounded-circle" width="64px" height="64px" style="object-fit:cover;"
+                        alt="{{$rep->user->name}}">
                     <div class="media-body">
-                        <h5 class="mt-0">{{$rep->user->name}}</h5>
+                        <h5 class="mt-0">
+                            {{$rep->user->name}}
+                        </h5>
                         <p><i class="far fa-clock"></i> {{\Carbon\Carbon::parse($rep->created_at)->diffForHumans()}}</p>
+                        <p class="text-warning">
+                            @for($i=0;$i < $rep->vote;$i++)
+                                <i class="bi bi-star-fill"></i>
+                                @endfor
+                        </p>
                         {{$rep->content}}
                     </div>
                 </div>
@@ -174,27 +188,27 @@
             @if(count($relate) > 0)
             <h2 class="font-weight-light" style="font-size:28px;">Sản phẩm liên quan</h2>
             <hr class="bg-dark mt-0" style="height:3px;" />
-            @foreach($relate as $product)
-            <a href="san-pham/{{$product->id}}/{{$product->_link}}" title="{{$product->title}}">
+            @foreach($relate as $relate)
+            <a href="san-pham/{{$relate->id}}/{{$relate->_link}}" title="{{$relate->title}}">
                 <div class="card col-lg-3 col-md-4 col-sm-12 p-0 m-1 float-left">
-                    @if($product->discount > 0)
-                    <span class="discount text-center">-{{$product->discount}}%</span>
+                    @if($relate->discount > 0)
+                    <span class="discount text-center">-{{$relate->discount}}%</span>
                     @endif
                     <div class="thumbnail">
-                        <img id="img-{{$product->id}}" data-src="{{$product->thumbnail}}" style="object-fit:cover;" height="100%" width="100%" />
+                        <img id="img-{{$relate->id}}" data-src="{{$relate->thumbnail}}" style="object-fit:cover;"
+                            height="100%" width="100%" />
                     </div>
-                    <p class="card-title p-1 text-dark">{{$product->title}}</p>
-                    <div class="w-100 col-12 d-inline-block mt-0" style="overflow:hidden;max-height:50px;">
+                    <div class="w-100 col-12 d-inline-block mt-3" style="overflow:hidden;max-height:50px;">
                         <ul>
                             @php
-                            if(!empty($product->image->image)){
-                            $data = $product->image->image;
+                            if(!empty($relate->image->image)){
+                            $data = $relate->image->image;
                             $img = json_decode($data,true);
                             $i = 0;
                             if(count($img) > 1){
                             foreach($img as $img){
-                            echo '<li class="float-left rounded-circle mr-2 more-img" data-id="'.$product->id.'" data-src="'.$img.'"
-                                style="background-image:url('.$img.');"></li>';
+                            echo '<li class="float-left rounded-circle mr-2 more-img" data-id="'.$relate->id.'"
+                                data-src="'.$img.'" style="background-image:url('.$img.');"></li>';
                             $i++;
                             }
                             }
@@ -202,17 +216,15 @@
                             @endphp
                         </ul>
                     </div>
-                    <p class="p-1 text-dark font-weight-bold">
-                        @if($product->discount > 0)
-                        <s class=font-weight-light>{{number_format($product->price)}}<u>đ</u></s>
-                        {{number_format($product->price * (1-($product->discount / 100)))}}<u>đ</u>
+                    <p class="card-title p-1 text-dark">{{$relate->title}}</p>
+                    <p class="p-1 text-dark font-weight-bold text-center mb-0">
+                        @if($relate->discount > 0)
+                        <s class=font-weight-light>{{number_format($relate->price)}}<u>đ</u></s>
+                        {{number_format($relate->price * (1-($relate->discount / 100)))}}<u>đ</u>
                         @else
-                        {{number_format($product->price)}}<u>đ</u>
+                        {{number_format($relate->price)}}<u>đ</u>
                         @endif
                     </p>
-                    <p class="p-1 act">
-                        <a class="btn btn-warning btn-md" href="san-pham/{{$product->id}}/{{$product->_link}}">Mua ngay
-                            <i class="bi bi-bag-fill"></i></a>
                 </div>
             </a>
             @endforeach
@@ -230,11 +242,11 @@
                     <span class="discount text-center">-{{$visited[$i]['item']->discount}}%</span>
                     @endif
                     <div class="thumbnail">
-                        <img id="img-{{$visited[$i]['item']->id}}x" data-src="{{$visited[$i]['item']->thumbnail}}" style="object-fit:cover;" class="card-img"
-                            height="100%" alt="{{$visited[$i]['item']->title}}" />
+                        <img id="img-{{$visited[$i]['item']->id}}x" data-src="{{$visited[$i]['item']->thumbnail}}"
+                            style="object-fit:cover;" class="card-img" height="100%"
+                            alt="{{$visited[$i]['item']->title}}" />
                     </div>
-                    <p class="card-title p-1 text-dark">{{$visited[$i]['item']->title}}</p>
-                    <div class="w-100 col-12 d-inline-block mt-0" style="overflow:hidden;max-height:50px;">
+                    <div class="w-100 col-12 d-inline-block mt-3" style="overflow:hidden;max-height:50px;">
                         <ul>
                             @php
                             if(!empty($visited[$i]['item']->image->image)){
@@ -242,7 +254,8 @@
                             $img = json_decode($data,true);
                             if(count($img) > 1){
                             foreach($img as $img){
-                            echo '<li class="float-left rounded-circle mr-2 more-img" data-id="'.$visited[$i]['item']->id.'x" data-src="'.$img.'"
+                            echo '<li class="float-left rounded-circle mr-2 more-img"
+                                data-id="'.$visited[$i]['item']->id.'x" data-src="'.$img.'"
                                 style="background-image:url('.$img.');"></li>';
                             }
                             }
@@ -250,18 +263,14 @@
                             @endphp
                         </ul>
                     </div>
-                    <p class="p-1 text-dark font-weight-bold">
+                    <p class="card-title p-1 text-dark">{{$visited[$i]['item']->title}}</p>
+                    <p class="p-1 text-dark font-weight-bold text-center mb-0">
                         @if($visited[$i]['item']->discount > 0)
                         <s class="font-weight-light">{{number_format($visited[$i]['item']->price)}}<u>đ</u></s>
                         {{number_format($visited[$i]['item']->price * (1-($visited[$i]['item']->discount / 100)))}}<u>đ</u>
                         @else
                         {{number_format($visited[$i]['item']->price)}}<u>đ</u>
                         @endif
-                    </p>
-                    <p class="p-1 act">
-                        <a class="btn btn-warning"
-                            href="san-pham/{{$visited[$i]['item']->id}}/{{$visited[$i]['item']->_link}}">Mua ngay <i
-                                class="fas fa-shopping-cart"></i></a>
                     </p>
                 </div>
             </a>
@@ -274,11 +283,11 @@
         <hr />
         @if($random)
         @foreach($random->get() as $ran)
-        <a href="san-pham/{{$ran->id}}/{{$ran->title}}" title="san-pham/{{$ran->id}}/{{$ran->title}}">
-            <div class="col-12 p-0 m-1 ran-pro border">
-                <img id="img-slide" data-src="{{$ran->thumbnail}}" onclick="slideImg()"
-                    class="card-img col-5 thumbnail float-left" style="object-fit:cover;" />
-                <div class="col-6 float-left" style="height:100%;">
+        <a href="san-pham/{{$ran->id}}/{{$ran->_link}}" title="{{$ran->title}}">
+            <div class="p-0 mt-2 ran-pro border d-flex flex-row flex-nowrap">
+                <img id="img-slide" data-src="{{$ran->thumbnail}}" class="card-img w-100 flex-grow-1 thumbnail p-0"
+                    style="object-fit:cover;min-width:200px;" />
+                <div class="col-7" style="height:100%;">
                     <p class="card-title p-1 text-dark" style="font-size:18px;">{{$ran->title}}</p>
                     <p class="p-1 text-dark font-weight-bold">
                         @if($ran->discount > 0)
@@ -288,9 +297,11 @@
                         {{number_format($ran->price)}}<u>đ</u>
                         @endif
                     </p>
-                    <p class="p-1 act"><a class="add_cart btn btn-info" href="san-pham/{{$ran->id}}/{{$ran->_link}}">Xem
-                            chi
-                            tiết</a></p>
+                    <p class="p-1 act">
+                        <a class="add_cart btn btn-info" href="san-pham/{{$ran->id}}/{{$ran->_link}}">
+                            Xem chi tiết
+                        </a>
+                    </p>
                 </div>
             </div>
         </a>

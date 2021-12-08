@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class payment extends Model
+class Payment extends Model
 {
     //
 	protected $table = "payment";
 	public $timestampt = true;
 	
 	public function product(){
-		return $this->belongsTo('App\product','id_product','id');
+		return $this->belongsTo('App\Product','id_product','id');
 	}
 	
 	public function user(){
@@ -19,6 +19,6 @@ class payment extends Model
 	}
 	
 	public function bill(){
-		return $this->belongsTo('App\bill','code_bill','id');
+		return $this->belongsTo('App\Bill','code_bill','id');
 	}
 }

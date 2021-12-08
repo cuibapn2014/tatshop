@@ -152,7 +152,9 @@
 @endsection
 @section('script')
 <script>
-CKEDITOR.replace('content')
+CKEDITOR.replace('content');
+CKEDITOR.config.autoParagraph = false;
+CKEDITOR.config.enterMode = CKEDITOR.ENTER_BR;
 </script>
 @endsection
 @section('title')

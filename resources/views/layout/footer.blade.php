@@ -56,7 +56,7 @@
 			</div>
 		</div>
 	</footer>
-	<div id="back-top" class="btn btn-secondary position-fixed" style="bottom: 100px; right: 30px; padding: 10px 20px;z-index:10000;"><i class="fas fa-chevron-up"></i></div>
+	<div id="back-top" class="btn btn-secondary position-fixed overflow-hidden rounded-circle" style="bottom: 100px; right: 30px; padding: 14px 20px;z-index:10000;"><i class="fas fa-chevron-up"></i></div>
 	<div class="col-12 bg-dark text-center float-left text-white">
 		<p class="m-1 font-weight-light center">
 		<i class="far fa-copyright"></i>

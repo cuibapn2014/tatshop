@@ -15,6 +15,10 @@ $(document).ready(() => {
     }
 });
 
+window.oncontextmenu = function(){
+    return true;
+}
+
 updateCart = ($id, $qty) => {
     $.get("updateCart/" + $id + "/" + $qty, (data) => {
     });

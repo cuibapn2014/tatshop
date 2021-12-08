@@ -2,7 +2,7 @@ const images = document.querySelectorAll("[data-src]");
 
 const imgOptions = {
     root: null,
-    threshold: 0.6,
+    threshold: 0,
     rootMargin: "0px",
 };
 

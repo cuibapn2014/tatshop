@@ -19,7 +19,7 @@
 		<img class="img-mem" src="http://shoptat.000webhostapp.com/ceo.jpg" width="100px" height="100px" alt=""/>
 		</div>
 		<div class="col-12">
-			<h2 class="card-title ml-4">Lê Quốc An</h2>
+			<h2 class="card-title-info ml-4">Lê Quốc An</h2>
 			<p class="card-text">CEO</p>
 		</div>
 	</div>
@@ -28,7 +28,7 @@
 		<img class="img-mem" src="image/me.jpg" width="100px" height="100px" alt=""/>
 		</div>
 		<div class="col-12">
-			<h2 class="card-title ml-4">Nguyễn Mạnh Tuấn</h2>
+			<h2 class="card-title-info ml-4">Nguyễn Mạnh Tuấn</h2>
 			<p class="card-text">Nhà phát triển - Developer for TAT</p>
 		</div>
 	</div>
@@ -37,7 +37,7 @@
 		<img class="img-mem" src="image/marketing.jpg" width="100px" height="100px" alt=""/>
 		</div>
 		<div class="col-12">
-			<h2 class="card-title ml-4">Nguyễn Trung Thật</h2>
+			<h2 class="card-title-info ml-4">Nguyễn Trung Thật</h2>
 			<p class="card-text">Marketing</p>
 		</div>
 	</div>

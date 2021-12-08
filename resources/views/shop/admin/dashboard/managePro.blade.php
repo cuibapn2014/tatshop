@@ -122,7 +122,6 @@
 	@endif
   </tbody>
 </table>
-{{$_product->links()}}
 	</div>
 @endsection
 @section('title')

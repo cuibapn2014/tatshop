@@ -24,7 +24,7 @@
                     <img id="img-{{$product->id}}" data-src="{{$product->thumbnail}}" style="object-fit:cover;" height="100%" width="100%"
                         alt="{{$product->title}}" />
                 </div>
-                <p class="card-title p-1 text-dark">{{$product->title}}</p>
+                <p class="card-title p-1 text-dark mb-1">{{$product->title}}</p>
                 <div class="w-100 col-12 d-inline-block mt-0" style="overflow:hidden;max-height:50px;">
                     <ul>
                         @php
@@ -43,7 +43,7 @@
                         @endphp
                     </ul>
                 </div>
-                <p class="p-1 text-dark font-weight-bold">
+                <p class="p-1 text-dark font-weight-bold text-center mb-0">
                     @if($product->discount > 0)
                     <s class=font-weight-light>{{number_format($product->price)}}<u>đ</u></s>
                     {{number_format($product->price * (1-($product->discount / 100)))}}<u>đ</u>
@@ -51,9 +51,6 @@
                     {{number_format($product->price)}}<u>đ</u>
                     @endif
                 </p>
-                <p class="p-1 act">
-                    <a class="btn btn-warning btn-md" href="san-pham/{{$product->id}}/{{$product->_link}}">Mua ngay <i
-                            class="bi bi-bag-fill"></i></a>
             </div>
         </a>
         @endforeach

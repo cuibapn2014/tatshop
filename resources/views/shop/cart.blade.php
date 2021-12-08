@@ -43,12 +43,12 @@
                 <i class="float-left w-100">Tạm tính: {{number_format($item->price * $item->quantity)}}đ</i>
                 <p class="w-100 float-left">Số lượng:</p>
                 <div class="w-100 float-left mt-0 pt-0">
-                    <button class="btn btn-info float-left minus"><i class="bi bi-dash-lg"></i></button>
+                    <button class="btn btn-light float-left minus"><i class="bi bi-dash-lg"></i></button>
                     <input id="amount_{{$key}}" class="float-left text-center border-0 amount" data-id="{{$item->id}}"
                         style="height:37px;width:50px;" type="number" readonly value="{{$item->quantity}}" />
-                    <button class="btn btn-info float-left plus"><i class="fbi bi-plus-lg"></i></button>
+                    <button class="btn btn-light float-left plus"><i class="fbi bi-plus-lg"></i></button>
                 </div>
-                <a class="btn btn-success my-2 text-white update-cart float-left" data="{{$key}}">Cập nhật <i
+                <a class="btn btn-dark my-2 text-white update-cart float-left" data="{{$key}}">Cập nhật <i
                         class="far fa-edit"></i></a>
             </div>
         </div>
@@ -101,7 +101,7 @@
                     <input type="hidden" name="attr[]"
                         value="{{$item->attributes->size}},{{$item->attributes->color}}" />
                     <input type="hidden" name="price[]" value="{{$item->price}}" />
-                    <input type="hidden" name="qty[]" value="{{$item->quantity}}" />
+                    <input type="hidden" data-productID="{{$item->id}}" name="qty[]" value="{{$item->quantity}}" />
                     @endforeach
                     <hr />
                     <div class="form-group">

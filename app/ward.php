@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ward extends Model
+class Ward extends Model
 {
     //
 	protected $table = "ward";
 	
 	public function district(){
-		return $this->belongsTo('App\district','district','id');
+		return $this->belongsTo('App\District','district','id');
 	}
 }

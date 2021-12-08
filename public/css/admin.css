@@ -8,6 +8,7 @@ body{
 	padding-top:50px;
 }
 
+
 nav#header{
 	top:0;
 	width: 100%;
@@ -15,6 +16,7 @@ nav#header{
 	position: absolute;
 	z-index: 1000;
 }
+
 .dashboard{
 	height:100%;
 	position:fixed;

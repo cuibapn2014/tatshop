@@ -31,9 +31,9 @@ return [
     ],
 	
 	'facebook' => [
-    'client_id' => '554751351799549',
-    'client_secret' => 'fbd4fa9c189331fd6468207d3cac0cc2',
-    'redirect' => 'https://laravel/auth/facebook/callback',
-],
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect' => env('FACEBOOK_REDIRECT_URI'),
+    ],
 
 ];

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class attribute extends Model
+class Attribute extends Model
 {
     //
 	protected $table = "attribute_pro";

@@ -6,7 +6,7 @@
    {{session('notice')}}
 </div>
 @endif
-<div class = "container-fluid padding mt-4">
+<div class = "container-fluid p-0 mt-4">
    <div class="col-lg-9 col-md-12 col-sm-12 float-left">
       <h2 class="display-4 pb-2" style="font-size: 28px;border-bottom:4px solid #000;">Nhật ký TAT SHOP</h2>
       <div class="col-12">
@@ -15,7 +15,7 @@
             <figure class="position-relative mb-0">
                <img class="_img-blog" src="{{$blog->image}}" width="100%" alt="{{$blog->content}}"/>
                <div class="_interact col-12 d-inline position-absolute text-white" style="bottom: 0;left:0">
-               <p id="_like" class="col-12 float-left pt-2 text-center"><i id="_iconx"></i> {{$blog->_like()->count()}}</p>
+               <p id="_like{{$blog->id}}" class="col-12 float-left pt-2 text-center _like"><i id="_iconx{{$blog->id}}" class="_iconx"></i> {{$blog->_like()->count()}}</p>
                 </div>
             </figure>
             <figcaption class="bg-light p-1">
@@ -26,14 +26,14 @@
          </div>
          <script type="text/javascript">
    $(document).ready(function($){
-      var like = $("#_like");
+      var like = $("#_like{{$blog->id}}");
       like.on('click',function(){
          $.get('ajaxLike/' + {{$blog->id}},function(data){   
-           $("#_like").html(data);
+           $("#_like{{$blog->id}}").html(data);
          });
       });
       $.get('getAjaxLike/' + {{$blog->id}},function(data){
-         $("#_iconx").attr('class',data);
+         $("#_iconx{{$blog->id}}").attr('class',data);
       });
    });
 </script>
@@ -41,14 +41,6 @@
       </div>
    </div>
    <div class="col-lg-3 col-md-12 col-sm-12 float-left">
-      <h2 class="display-4 text-left p-1" style="font-size: 28px;border-bottom:4px solid !important;">Tìm kiếm</h2>
-      <div class="col-12 p-0 mb-2">
-         <form action="search" method="post" class="form-inline my-2 my-lg-0 searchForm" role="search">
-            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-            <label for="search" class="btn btn-info my-2 my-sm-0 search_btn"><i class="fas fa-search"></i></label>
-            <input id="search" class="border p-2 w-100 search" type="search" name="search" placeholder="Quần áo, giày dép,...">
-         </form>
-      </div>
       <h2 class="display-4 text-left pb-1 mt-2" style="font-size: 28px;border-bottom:4px solid !important;">Sản phẩm</h2>
       <div id="category" class="category col-12 p-1 border position-relative">
          <a href="san-pham#_msh">
@@ -77,6 +69,11 @@
          </a>
          <button id="more" onClick="more()" class="btn btn-dark text-center col-12 position-absolute" style="bottom:0;left: 0;">Xem thêm <i class="fas fa-chevron-down pt-1"></i></button>
       </div>
+      @php 
+      $mostview = $data_share['mostBuy']; 
+      $vote = $data_share['comment'];
+      $sale = $data_share['sale'];
+      @endphp
       @if($mostview->count() > 0)
       <h2 class="display-4 mt-2 pb-2" style="font-size:28px; border-bottom: 4px solid #000;">Mua nhiều nhất</h2>
       <div class="col-12 p-0">

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class reply extends Model
+class Reply extends Model
 {
     //
 	protected $table = 'reply';
@@ -13,7 +13,7 @@ class reply extends Model
 	}
         
 	public function product(){
-		return $this->belongsTo('App\product','reply','id');
+		return $this->belongsTo('App\Product','reply','id');
 	}
 
 }
