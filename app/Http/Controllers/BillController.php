@@ -43,9 +43,13 @@ class BillController extends Controller
 				'customer' => 'required|min:6',
 				'phone' => 'required|min:10|max:10',
 				'address' => 'required|min:20',
+				'province' => 'required',
+				'district' => 'required'
 			],
 			[
 				'customer.required' => 'Bạn chưa nhập tên',
+				'province.required' => 'Vui lòng chọn tỉnh hoặc thành phố bạn sống',
+				'district.required' => 'Vui lòng chọn quận hoặc huyện bạn sống',
 				'customer.min' => 'Tên có ít nhất 6 ký tự',
 				'phone.required' => 'Bạn chưa nhập số diện thoại',
 				'phone.min' => 'Số điện thoại không hợp lệ',
@@ -86,10 +90,10 @@ class BillController extends Controller
 			$bill->email = $req->email;
 			$bill->stt = 1;
 			$bill->pay = 1;
+			$bill->fee = $req->fee_ship;
 			$bill->save();
 			foreach ($cart as $item) {
 				$payment = new payment();
-				$payment->customer = $req->customer;
 				$payment->id_product = $item->id;
 				$payment->name = $item->name;
 				$payment->code_bill = bill::orderBy('id', 'desc')->first()->id;

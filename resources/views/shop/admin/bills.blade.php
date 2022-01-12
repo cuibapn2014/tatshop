@@ -46,6 +46,7 @@
                 }
                 @endphp
             </p>
+            <p class="mb-1"><i class="bi bi-truck text-info"></i> {{number_format($bill->fee)}}đ</p>
             <p class="mb-1"><i class="fas fa-ticket-alt text-danger"></i> {{$bill->discount}}% ~
                 {{number_format(($bill->total / (1 - $bill->discount/100)) * ($bill->discount/100))}}đ
             </p>

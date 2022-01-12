@@ -6,8 +6,7 @@ $visited = session('product');
     <div id="_event-1">
         <h2 class="font-weight-light" style="font-size:28px;">
             <p class="float-left m-2">DEAL MỚI</p>
-            <div id="expire-deals" class="text-white text-center float-left"
-                data-time="{{\Carbon\Carbon::parse($data_share['deal']->first()->expired)->toDayDateTimeString()}}">
+            <div id="expire-deals" class="text-white text-center float-left" data-time="{{\Carbon\Carbon::parse($data_share['deal']->first()->expired)->toDayDateTimeString()}}">
                 <p class="days count bg-dark rounded p-2">0d</p>
                 <p class="hours count bg-dark rounded p-2">0h</p>
                 <p class="minutes count bg-dark rounded p-2">0m</p>
@@ -34,27 +33,23 @@ $visited = session('product');
     <h2 class="font-weight-light" style="font-size:28px;">Sản phẩm đã xem gần đây</h2>
     <hr class="bg-dark mt-0" style="height:3px;" />
     @for($i = (count($visited)-1);$i >= 0;$i--)
-    <a href="san-pham/{{$visited[$i]['item']->id}}/{{$visited[$i]['item']->_link}}"
-        title="{{$visited[$i]['item']->title}}">
+    <a href="san-pham/{{$visited[$i]['item']->id}}/{{$visited[$i]['item']->str_slug}}" title="{{$visited[$i]['item']->title}}">
         <div class="card col-lg-3 col-md-4 col-sm-12 p-0 m-1 float-left">
             @if($visited[$i]['item']->discount > 0)
             <span class="discount text-center">-{{$visited[$i]['item']->discount}}%</span>
             @endif
             <div class="thumbnail">
-                <img id="img-{{$visited[$i]['item']->id}}x" data-src="{{$visited[$i]['item']->thumbnail}}" style="object-fit:cover;" class="card-img"
-                    height="100%" alt="{{$visited[$i]['item']->title}}" />
+                <img id="img-{{$visited[$i]['item']->id}}x" data-src="{{$visited[$i]['item']->thumbnail}}" style="object-fit:cover;" class="card-img" height="100%" alt="{{$visited[$i]['item']->title}}" />
             </div>
             <div class="w-100 col-12 d-inline-block mt-3" style="overflow:hidden;max-height:50px;">
                 <ul>
                     @php
-                    if(!empty($visited[$i]['item']->image->image)){
-                    $data_share = $visited[$i]['item']->image->image;
-                    $img = json_decode($data_share,true);
-                    if(count($img) > 1){
+                    if(count($visited[$i]['item']->image) > 1){
+                    $data_share = $visited[$i]['item']->image;
+                    $img = $visited[$i]['item']->image;
                     foreach($img as $img){
-                    echo '<li class="float-left rounded-circle mr-2 more-img" data-src="'.$img.'" data-id="'.$visited[$i]['item']->id.'x" style="background-image:url('.$img.');">
+                    echo '<li class="float-left rounded-circle mr-2 more-img" data-src="'.$img['image'].'" data-id="'.$visited[$i]['item']->id.'x" style="background-image:url('.$img['image'].');">
                     </li>';
-                    }
                     }
                     }
                     @endphp

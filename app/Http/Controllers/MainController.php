@@ -42,7 +42,7 @@ class MainController extends Controller
 	{
 		if (isset($code) && $code != null) {
 			$now = Carbon::now("Asia/Ho_Chi_Minh");
-			$codeD = code_discount::where("code", $code)->first();
+			$codeD = CodeDiscount::where("code", $code)->first();
 			if ($codeD != null) {
 				if ($codeD->min < $price && $codeD->time > 0 && $codeD->expire > $now) {
 					return $codeD->discount;
