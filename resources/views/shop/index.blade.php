@@ -17,7 +17,7 @@
     <div class="container-fluid padding p-0">
         @if(count($product) > 0)
         @foreach($product as $product)
-        <a href="san-pham/{{$product->id}}/{{$product->_link}}" title="{{$product->title}}">
+        <a href="san-pham/{{$product->id}}/{{$product->str_slug}}" title="{{$product->title}}">
             <div class="card col-lg-3 col-md-4 col-sm-12 p-0 m-1 float-left">
                 @if($product->discount > 0)
                 <span class="discount text-center">-{{$product->discount}}%</span>
@@ -31,14 +31,13 @@
                 <div class="w-100 col-12 d-inline-block mt-3" style="overflow:hidden;max-height:50px;">
                     <ul>
                         @php
-                        if(!empty($product->image->image)){
-                        $data = $product->image->image;
-                        $img = json_decode($data,true);
+                        if(!empty($product->image)){
+                        $data = $product->image;
                         $i = 0;
-                        if(count($img) > 1){
-                        foreach($img as $img){
+                        if(count($data) > 1){
+                        foreach($data as $img){
                         echo '<li class="float-left rounded-circle mr-2 more-img" data-id="'.$product->id.'"
-                            data-src="'.$img.'" style="background-image:url('.$img.');"></li>';
+                            data-src="'.$img->image.'" style="background-image:url('.$img->image.');"></li>';
                         $i++;
                         }
                         }

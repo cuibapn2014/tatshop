@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\District;
+use App\Models\District;
 use App\User;
 
 class UserController extends Controller
@@ -79,7 +79,7 @@ class UserController extends Controller
         $this -> validate($request,
 		[
 			'fullname' => 'required|min:3',
-			'sex_user' => 'required',
+			'gender_user' => 'required',
 			'birthday' => 'required',
 			'imgAvatar' => 'max:1024',
 			'phone' => 'min:10|max:10',
@@ -89,7 +89,7 @@ class UserController extends Controller
 			'phone.max' => 'Số điện thoại không hợp lệ',
 			'phone.min' => 'Số điện thoại không hợp lệ',
 			'fullname.required' => 'Bạn chưa nhập tên',
-			'sex_user.required' => 'Bạn chưa chọn giới tính',
+			'gender_user.required' => 'Bạn chưa chọn giới tính',
 			'birthday.required' => 'Bạn chưa chọn ngày sinh',
 			'imgAvatar.max' => 'Kích thước ảnh phải ít hơn 1 MB',
 		]);
@@ -98,7 +98,7 @@ class UserController extends Controller
 		$id = Auth::user()->id;
 		$user = User::find($id);
 		$user->name = $request->fullname;
-		$user->sex = $request->sex_user;
+		$user->gender = $request->gender_user;
 		$user->birthday = $request->birthday;
 		$user->address = $address;
 		$user->phone = $request->phone;

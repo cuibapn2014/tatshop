@@ -29,6 +29,7 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('facebook')->user();
         $this->registerOrLoginUser($user);
+        //return $user->token.' - '.$user->id;
         return redirect('/');
     }
 

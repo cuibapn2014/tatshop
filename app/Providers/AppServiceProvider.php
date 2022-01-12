@@ -4,10 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 //use Darryldecode\Cart\Cart;
-use View, Auth, App\Product;
+use View, Auth, App\Models\Product;
 use Carbon\Carbon;
 use Cart, Session;
-use App\Reply, App\Blog, App\Category, App\Deal, App\CodeDiscount;
+use App\Models\Reply, App\Models\Blog, App\Models\Category, App\Models\Deal, App\Models\CodeDiscount;
 
 class AppServiceProvider extends ServiceProvider
 {

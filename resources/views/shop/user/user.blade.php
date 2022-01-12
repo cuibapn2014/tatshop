@@ -69,11 +69,11 @@
 		</div>
 		<p>Giới tính</p>
 		<div class="custom-control custom-radio custom-control-inline">
-<input type="radio" id="customRadioInline1" checked name="sex_user" class="custom-control-input" value="Nam">
+<input type="radio" id="customRadioInline1" checked name="gender_user" class="custom-control-input" value="Nam">
   <label class="custom-control-label" for="customRadioInline1">Nam</label>
 </div>
 <div class="custom-control custom-radio custom-control-inline">
-  <input type="radio" id="customRadioInline2" name="sex_user" class="custom-control-input" value="Nữ">
+  <input type="radio" id="customRadioInline2" name="gender_user" class="custom-control-input" value="Nữ">
   <label class="custom-control-label" for="customRadioInline2">Nữ</label>
 </div>
 		<div class="form-group">

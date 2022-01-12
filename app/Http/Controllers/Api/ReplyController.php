@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Blog;
-use Auth;
+use App\Models\Reply;
 
-class BlogController extends Controller
+class ReplyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,7 @@ class BlogController extends Controller
     public function index()
     {
         //
-        $blog = blog::all();
-		return view('shop.blog',['blog' => $blog]);
+        return reply::all();
     }
 
     /**
@@ -27,24 +25,16 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(Request $request)
     {
         //
-        $this->validate($req,
-		[
-			'_content' => 'required',
-			'image' => 'required',
-		],
-		[
-			'_content.required' => 'Bạn chưa nhập nội dung',
-			'image.required' => 'Bạn chưa thêm link ảnh',
-		]);
-		$blog = new blog();
-		$blog->content = $req->_content;
-		$blog->image = $req->image;
-		$blog->written = Auth::user()->name;
-		$blog->save();
-		return back()->with('notice','Đã thêm blog mới');
+        $reply = new reply();
+        $reply->idUser = $request->user["id"];
+        $reply->content = $request->content;
+        $reply->reply = $request->reply;
+        $reply->vote = $request->vote;
+        $reply->save();
+        return $request;
     }
 
     /**
@@ -53,9 +43,10 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(reply $reply)
     {
         //
+        return $reply->with(["user"])->get();
     }
 
     /**
@@ -65,10 +56,10 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, reply $reply)
     {
         //
-
+        $reply->update($request->all());
     }
 
     /**
@@ -77,11 +68,9 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(reply $reply)
     {
         //
-        $blog = blog::find($id);
-		$blog->delete();
-		return back()->with('notice','Đã xóa');
+        $reply->delete();
     }
 }

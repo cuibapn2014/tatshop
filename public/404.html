@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#17a2b8" />
+    <meta name="csrf_token" content="{{csrf_token()}}" />
+    <base href="{{asset('')}}" />
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@900&display=swap"
+        rel="stylesheet">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/brands.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/solid.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+    <!--CSS include Bootstrap 4-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!--Effect for Navbar-->
+<style>
+    .page_404{ 
+        padding:40px 0; 
+        background:#fff; 
+        font-family: 'Arvo', serif;
+        height: 550px;
+}
+
+.page_404  img{ width:100%;}
+
+.four_zero_four_bg{
+ 
+ background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+    height: 400px;
+    background-position: center;
+ }
+ 
+ 
+ .four_zero_four_bg h1{
+ font-size:80px;
+ }
+ 
+  .four_zero_four_bg h3{
+       font-size:80px;
+       }
+       
+       .link_404{      
+  color: #fff!important;
+    padding: 10px 20px;
+    background: #39ac31;
+    margin: 20px 0;
+    display: inline-block;}
+  .contant_box_404{ margin-top:-50px;}
+</style>
+    <title>404 - Not found URL</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light navMenu">
+        <a class="navbar-brand" href="/">
+            <img src="image/_logo1.png" alt="logo-tat" height="50px" />
+        </a>
+        <button class="navbar-toggler border-light bg-light" type="button" data-toggle="collapse"
+            data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item font-weight-light active">
+                    <a class="nav-link" href="/">HOME<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item font-weight-light">
+                    <a class="nav-link" href="san-pham">SẢN PHẨM</a>
+                </li>
+                <li class="nav-item font-weight-light">
+                    <a class="nav-link" href="blog">BLOG</a>
+                </li>
+                <li class="nav-item font-weight-light">
+                    <a class="nav-link" href="ve-chung-toi">VỀ CHÚNG TÔI</a>
+                </li>
+            </ul>
+        </div>
+        <div class="float-right">
+            <div class="nevigate">
+                <button class="btn btn-white">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+            <div id="search">
+                <i class="bi bi-search"></i>
+            </div>
+        </div>
+    </nav>
+    
+    <!--Carousel Slide-->
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="w-100"
+                    src="https://images.unsplash.com/photo-1614990354198-b06764dcb13c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1800&q=80"
+                    style="object-fit:cover;height:500px;" />
+            </div>
+        </div>
+    
+        <div id="search-form">
+            <button type="button" class="btn-close btn-close-white close-search" aria-label="Close"></button>
+            <form action="search" method="post">
+                <input type="hidden" name="_token" value="{{csrf_token()}}" />
+                <div class="w-100">
+                    <label for="" class="float-left w-100 text-white text-left font-weight-light"
+                        style="font-size:36px;">Tìm kiếm</label>
+                    <input type="text" class="search-input w-100" name="search" value=""
+                        placeholder="Quần jean, áo thun,..." />
+                    <button class="btn btn-info float-left mt-1"><i class="bi bi-search"></i> Tìm kiếm</button>
+                </div>
+            </form>
+        </div>
+    
+        <div id="nevigation">
+            <button type="button" class="btn-close btn-close-white close-nav" aria-label="Close"></button>
+            <div class="navbar-link">
+                <ul>
+                    <li class="font-weight-light p-2">
+                        <a class="item-nav" href="/">HOME</a>
+                    </li>
+                    <li class="font-weight-light p-2">
+                        <a class="item-nav" href="san-pham">SẢN PHẨM</a>
+                    </li>
+                    <li class="font-weight-light p-2">
+                        <a class="item-nav" href="blog">BLOG</a>
+                    </li>
+                    <li class="font-weight-light p-2">
+                        <a class="item-nav" href="ve-chung-toi">VỀ CHÚNG TÔI</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <section class="page_404">
+            <div class="container">
+              <div class="row"> 
+              <div class="col-sm-12 ">
+              <div class="col-sm-12 col-sm-offset-1 text-center">
+              <div class="four_zero_four_bg">
+                <h1 class="text-center ">404</h1>     
+              </div>
+              
+              <div class="contant_box_404">
+              <h3 class="h2">
+              Look like you're lost
+              </h3>
+              
+              <p>the page you are looking for not avaible!</p>
+              
+              <a href="https://tatshop.tech/" class="link_404">Go to Home</a>
+            </div>
+              </div>
+              </div>
+              </div>
+            </div>
+          </section>
+
+        <!---FOOTER-->
+	
+	<footer class="mt-2">
+		<div class="container-fluid padding">
+			<div class="col-lg-3 col-sm-6 float-left">
+				<a href="{{asset('')}}">
+				<img class="brand" src="image/_logo1.png" width="100px"/>
+</a>
+				<hr>
+				<div class="col-12 float-left p-0">
+					<p class="col-4 p-0"><a class="text-white" href="/">HOME</a></p>
+					<p class="col-4 p-0"><a class="text-white" href="san-pham">SẢN PHẨM</a></p>
+					<p class="col-4 p-0"><a class="text-white" href="blog">BLOG</a></p>
+					<p class="col-4 p-0"><a class="text-white" href="ve-chung-toi">VỀ CHÚNG TÔI</a></p>
+					<p class="col-4 p-0 float-left"><a class="text-white" href="bao-mat">Bảo mật</a></p>
+					<p class="col-4 p-0 float-left"><a class="text-white" href="chinh-sach">Chính sách</a></p>
+				</div>	
+			</div>
+			<div class="col-lg-3 col-sm-6 float-left mt-2 p-0">
+				<h3>SẢN PHẨM</h3>
+				<hr>
+				<div class="col-12 p-0">
+						<div class="col-6 d-inline float-left p-0">
+						<ol>
+							<li class="col-12"><a href="san-pham#box_1" class="text-white">Áo nam</a></li>
+							<li class="col-12"><a href="san-pham#box_3" class="text-white">Áo nữ</a></li>
+							<li class="col-12"><a href="san-pham#box_2" class="text-white">Quần nam</a></li>
+							<li class="col-12"><a href="san-pham#box_4" class="text-white">Quần nữ</a></li>
+						</ol>
+					</div>
+					<div class="col-6 d-inline float-left p-0">
+						<ol>
+							<li class="col-12"><a href="san-pham#box_5" class="text-white">Giày nam</a></li>
+							<li class="col-12"><a href="san-pham#box_6" class="text-white">Giày nữ</a></li>
+							<li class="col-12"><a href="san-pham#box_7" class="text-white">Đầm</a></li>
+							<li class="col-12"><a href="san-pham#box_8" class="text-white">Balo</a></li>
+						</ol>
+						</div>
+				</div>
+			</div>	
+			</div>
+			<div class="col-lg-3 col-sm-6 float-left mt-2">
+				<h3>FANPAGES</h3>
+				<hr>
+				<a class="text-white social" href="https://www.facebook.com/tatshop.hcm/" target="_blank"><p><img src="image/fb.png" width="30px"/> Facebook</p></a>
+				<a class="text-white social" href="https://www.instagram.com/tatshop.hcm/" target="_blank"><p><img src="image/ig.png" width="30px"/> Instagram</p></a>	
+			</div>
+			<div class="col-lg-3 col-sm-6 float-left mt-2">
+				<h3>LH Hợp tác</h3>
+				<hr>
+				<p><svg class="bi bi-phone" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M11 1H5a1 1 0 00-1 1v12a1 1 0 001 1h6a1 1 0 001-1V2a1 1 0 00-1-1zM5 0a2 2 0 00-2 2v12a2 2 0 002 2h6a2 2 0 002-2V2a2 2 0 00-2-2H5z" clip-rule="evenodd"/>
+  <path fill-rule="evenodd" d="M8 14a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+</svg> 0388.794.195</p>
+<p><i class="fas fa-paper-plane text-info"></i> nmtworks.7250@gmail.com</p>
+			</div>
+		</div>
+	</footer>
+	<div id="back-top" class="btn btn-secondary position-fixed overflow-hidden rounded-circle" style="bottom: 100px; right: 30px; padding: 14px 20px;z-index:10000;"><i class="fas fa-chevron-up"></i></div>
+	<div class="col-12 bg-dark text-center float-left text-white">
+		<p class="m-1 font-weight-light center">
+		<i class="far fa-copyright"></i>
+		Reserved - all copyright of TAT
+		</p>
+	</div>
+
+
+    <!--Script Bootstrap --->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
+    </script>
+
+    <!--script-->
+    <script src="js/_script.js"></script>
+    <script src="js/__script.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+</body>
+
+</html>

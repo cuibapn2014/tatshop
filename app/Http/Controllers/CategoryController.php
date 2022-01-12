@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Cache;
-use App\Category;
-use App\Product;
-use App\Subcategory;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Subcategory;
 
 class CategoryController extends Controller
 {

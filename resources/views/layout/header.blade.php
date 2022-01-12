@@ -4,9 +4,7 @@
     <a class="navbar-brand" href="/">
         <img src="image/_logo1.png" alt="logo-tat" height="50px" />
     </a>
-    <button class="navbar-toggler border-light bg-light" type="button" data-toggle="collapse"
-        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-        aria-label="Toggle navigation">
+    <button class="navbar-toggler border-light bg-light" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -26,7 +24,7 @@
             </li>
         </ul>
     </div>
-    <div class="float-right">
+    <div class="float-right d-flex flex-row-reverse flex-nowrap align-items-center">
         <div class="nevigate">
             <button class="btn btn-white">
                 <i class="bi bi-list"></i>
@@ -45,8 +43,7 @@
             <div class="frame-cart">
                 @foreach(Cart::getContent() as $item)
                 <div class="item-cart w-100 text-right mb-2 float-left border-bottom pb-1">
-                    <img class="col-4 float-left" src="{{$item->attributes->img}}" style="object-fit:cover"
-                        alt="{{$item->name}}" width="100px" height="120px" />
+                    <img class="col-4 float-left" src="{{$item->attributes->img}}" style="object-fit:cover" alt="{{$item->name}}" width="100px" height="120px" />
                     <div class="col-8 float-left pl-0" style="font-size:1rem;">
                         <p>{{$item->name}}</p>
                         <p>{{$item->attributes->size}} - {{$item->attributes->color}}</p>
@@ -64,6 +61,15 @@
         <div id="search">
             <i class="bi bi-search"></i>
         </div>
+        @if(!Auth::check())
+        <div>
+            <a href="/login"><button class="btn btn-outline-info">Đăng Nhập</button></a>
+        </div>
+        @else
+        <div>
+            <a href="/login" class="bg-info" style="font-size:1rem;"><i class="bi bi-person"></i> {{Auth::user()->name}}</a>
+        </div>
+        @endif
     </div>
 </nav>
 
@@ -71,9 +77,7 @@
 <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="w-100"
-                src="https://images.unsplash.com/photo-1614990354198-b06764dcb13c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1800&q=80"
-                style="object-fit:cover;height:500px;" />
+            <img class="w-100" src="https://images.unsplash.com/photo-1614990354198-b06764dcb13c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1800&q=80" style="object-fit:cover;height:500px;" />
         </div>
     </div>
 
@@ -82,10 +86,8 @@
         <form action="search" method="post">
             <input type="hidden" name="_token" value="{{csrf_token()}}" />
             <div class="w-100">
-                <label for="" class="float-left w-100 text-white text-left font-weight-light"
-                    style="font-size:36px;">Tìm kiếm</label>
-                <input type="text" class="search-input w-100" name="search" value=""
-                    placeholder="Quần jean, áo thun,..." />
+                <label for="" class="float-left w-100 text-white text-left font-weight-light" style="font-size:36px;">Tìm kiếm</label>
+                <input type="text" class="search-input w-100" name="search" value="" placeholder="Quần jean, áo thun,..." />
                 <button class="btn btn-info float-left mt-1"><i class="bi bi-search"></i> Tìm kiếm</button>
             </div>
         </form>

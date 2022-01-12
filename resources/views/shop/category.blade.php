@@ -13,7 +13,7 @@
         <div class="col-12 float-left p-0">
             @if(count($product) > 0)
             @foreach($product as $p)
-            <a href="san-pham/{{$p->id}}/{{$p->_link}}" title="{{$p->title}}">
+            <a href="san-pham/{{$p->id}}/{{$p->str_slug}}" title="{{$p->title}}">
                 <div class="card col-lg-3 col-md-4 col-sm-12 p-0 m-1 float-left">
                     @if($p->discount > 0)
                     <span class="discount text-center">-{{$p->discount}}%</span>
@@ -26,14 +26,13 @@
                     <div class="w-100 col-12 d-inline-block mt-0" style="overflow:hidden;max-height:50px;">
                         <ul>
                             @php
-                            if(!empty($p->image->image)){
-                            $data = $p->image->image;
-                            $img = json_decode($data,true);
+                            if(!empty($p->image)){
+                            $data = $p->image;
                             $i = 0;
-                            if(count($img) > 1){
-                            foreach($img as $img){
+                            if(count($data) > 1){
+                            foreach($data as $img){
                             echo '<li class="float-left rounded-circle mr-2 more-img" data-id="'.$p->id.'"
-                                data-src="'.$img.'" style="background-image:url('.$img.');"></li>';
+                                data-src="'.$img->image.'" style="background-image:url('.$img->image.');"></li>';
                             $i++;
                             }
                             }
@@ -64,7 +63,7 @@
 </div>
 @endsection
 @section('title')
-Sản phẩm - TAT SHOP
+{{$product->first()->category->category}} - TAT SHOP
 @endsection
 @section('seo')
 <meta type="og:title" content="Sản phẩm - TAT SHOP" />

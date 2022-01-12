@@ -13,7 +13,7 @@
     <div class="container-fluid padding p-0">
         @if(count($filter) > 0)
         @foreach($filter as $filte)
-        <a href="san-pham/{{$filte->id}}/{{$filte->_link}}" title="{{$filte->title}}">
+        <a href="san-pham/{{$filte->id}}/{{$filte->str_slug}}" title="{{$filte->title}}">
             <div class="card col-lg-3 col-md-4 col-sm-12 p-0 m-1 float-left">
                 @if($filte->discount > 0)
                 <span class="discount text-center">-{{$filte->discount}}%</span>
@@ -25,14 +25,13 @@
                 <div class="w-100 col-12 d-inline-block mt-3" style="overflow:hidden;max-height:50px;">
                     <ul>
                         @php
-                        if(!empty($filte->image->image)){
-                        $data = $filte->image->image;
-                        $img = json_decode($data,true);
+                        if(!empty($filte->image)){
+                        $data = $filte->image;
                         $i = 0;
-                        if(count($img) > 1){
-                        foreach($img as $img){
+                        if(count($data) > 1){
+                        foreach($data as $img){
                         echo '<li class="float-left rounded-circle mr-2 more-img" data-id="'.$filte->id.'"
-                            data-src="'.$img.'" style="background-image:url('.$img.');"></li>';
+                            data-src="'.$img->image.'" style="background-image:url('.$img->image.');"></li>';
                         $i++;
                         }
                         }

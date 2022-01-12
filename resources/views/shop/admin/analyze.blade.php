@@ -51,13 +51,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 @endforeach
             ]
             
-        },{
-          name: 'Tổng doanh thu',
-          data: [
-            @foreach($bill as $b)
-                {{$total}},
-                @endforeach
-          ],
         }],
     }); 
 });

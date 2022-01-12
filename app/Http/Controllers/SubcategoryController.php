@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Subcategory;
-use App\Product;
+use App\Models\Subcategory;
+use App\Models\Product;
 
 class SubcategoryController extends Controller
 {

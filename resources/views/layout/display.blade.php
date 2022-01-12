@@ -48,7 +48,7 @@
                         </p>
                         @endif
                         <a class="btn btn-outline-info"
-                            href="san-pham/{{$data_share['mostBuy']->shift()->id}}/{{$data_share['mostBuy']->shift()->_link}}">Mua
+                            href="san-pham/{{$data_share['mostBuy']->shift()->id}}/{{$data_share['mostBuy']->shift()->str_slug}}">Mua
                             Ngay</a>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                             <small class="font-weight-bold"><s>{{number_format($buy->price)}}đ</s></small>
                         </p>
                         @endif
-                        <a class="btn btn-outline-info" href="san-pham/{{$buy->id}}/{{$buy->_link}}">Mua Ngay</a>
+                        <a class="btn btn-outline-info" href="san-pham/{{$buy->id}}/{{$buy->str_slug}}">Mua Ngay</a>
                 </div>
             </div>
             @endforeach
@@ -99,7 +99,7 @@
                             class="font-weight-bold"><s>{{number_format($data_share['sale']->first()->price)}}đ</s></small>
                     </p>
                     <a class="btn btn-outline-info"
-                        href="san-pham/{{$data_share['sale']->first()->id}}/{{$data_share['sale']->shift()->_link}}">Mua
+                        href="san-pham/{{$data_share['sale']->first()->id}}/{{$data_share['sale']->shift()->str_slug}}">Mua
                         Ngay</a>
                 </div>
             </div>
@@ -116,7 +116,7 @@
                         <small class="font-weight-bold"><s>{{number_format($data_share['sale']->price)}}đ</s></small>
                     </p>
                     <a class="btn btn-outline-info"
-                        href="san-pham/{{$data_share['sale']->id}}/{{$data_share['sale']->_link}}">Mua Ngay</a>
+                        href="san-pham/{{$data_share['sale']->id}}/{{$data_share['sale']->str_slug}}">Mua Ngay</a>
                 </div>
             </div>
             @endforeach
@@ -139,9 +139,10 @@
 <div id="sale" class="col-12 p-0">
     <div id="carouselComment" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="10000">
-                <img src="{{$data_share['comment']->first()->product->thumbnail}}" class="d-block w-100 _img-vote"
-                    alt="{{$data_share['comment']->first()->product->title}}">
+            <div class="carousel-item active" data-bs-interval="7000">
+                <img src="
+                {{strpos($data_share['comment']->first()->user->image,'ttps://') == 1 ? $data_share['comment']->first()->user->image : 'image/'.$data_share['comment']->first()->user->image}}             
+                " class="d-block w-100 _img-vote" alt="{{$data_share['comment']->first()->content}}">
                 <div class="_detail p-2 w-100 text-white">
                     <p>{{$data_share['comment']->first()->user->name}}</p>
                     <p>{{$data_share['comment']->first()->content}}</p>
@@ -158,22 +159,22 @@
                     </p>
                 </div>
             </div>
-            @foreach($data_share['comment'] as $data_share['comment'])
+            @foreach($data_share['comment'] as $data_comment)
             <div class="carousel-item " data-bs-interval="5000">
-                <img src="{{$data_share['comment']->product->thumbnail}}" class="d-block w-100"
-                    alt="{{$data_share['comment']->product->title}}">
+                <img src="{{strpos($data_comment->user->image,'ttps://') == 1 ? $data_comment->user->image : 'image/'.$data_comment->user->image}}"
+                    class="d-block w-100" alt="{{$data_comment->content}}">
                 <div class="_detail p-2 w-100 text-white">
-                    <p>{{$data_share['comment']->user->name}}</p>
-                    <p>{{$data_share['comment']->content}}</p>
+                    <p>{{$data_comment->user->name}}</p>
+                    <p>{{$data_comment->content}}</p>
                     <p class="text-warning">
-                        @for($i = 0; $i < $data_share['comment']->vote;$i++)
+                        @for($i = 0; $i < $data_comment->vote;$i++)
                             <i class="fas fa-star"></i>
                             @endfor
-                            @if($data_share['comment']->vote < 5) @for($i=0;$i < 5 - $data_share['comment']->vote;$i++)
+                            @if($data_comment->vote < 5) @for($i=0;$i < 5 - $data_comment->vote;$i++)
                                 <i class="far fa-star"></i>
                                 @endfor
                                 @endif
-                                {{$data_share['comment']->vote}}.0
+                                {{$data_comment->vote}}.0
                     </p>
                 </div>
             </div>

@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Blog;
-use Auth;
 
-class BlogController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,7 @@ class BlogController extends Controller
     public function index()
     {
         //
-        $blog = blog::all();
-		return view('shop.blog',['blog' => $blog]);
+        return Category::all();
     }
 
     /**
@@ -27,24 +25,9 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(Request $request)
     {
         //
-        $this->validate($req,
-		[
-			'_content' => 'required',
-			'image' => 'required',
-		],
-		[
-			'_content.required' => 'Bạn chưa nhập nội dung',
-			'image.required' => 'Bạn chưa thêm link ảnh',
-		]);
-		$blog = new blog();
-		$blog->content = $req->_content;
-		$blog->image = $req->image;
-		$blog->written = Auth::user()->name;
-		$blog->save();
-		return back()->with('notice','Đã thêm blog mới');
     }
 
     /**
@@ -53,9 +36,10 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $category)
     {
         //
+        return $category;
     }
 
     /**
@@ -68,7 +52,6 @@ class BlogController extends Controller
     public function update(Request $request, $id)
     {
         //
-
     }
 
     /**
@@ -80,8 +63,5 @@ class BlogController extends Controller
     public function destroy($id)
     {
         //
-        $blog = blog::find($id);
-		$blog->delete();
-		return back()->with('notice','Đã xóa');
     }
 }

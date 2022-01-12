@@ -21,7 +21,7 @@
             }
             @endphp
             @for($i;$i >= $end;$i--)
-            <a href="san-pham/{{$cate->product[$i]->id}}/{{$cate->product[$i]->_link}}"
+            <a href="san-pham/{{$cate->product[$i]->id}}/{{$cate->product[$i]->str_slug}}"
                 title="{{$cate->product[$i]->title}}">
                 <div class="card col-lg-3 col-md-4 col-sm-12 p-0 m-1 float-left">
                     @if($cate->product[$i]->discount > 0)
@@ -37,14 +37,13 @@
                     <div class="w-100 col-12 d-inline-block mt-3" style="overflow:hidden;max-height:50px;">
                         <ul>
                             @php
-                            if(!empty($cate->product[$i]->image->image)){
-                            $data = $cate->product[$i]->image->image;
-                            $img = json_decode($data,true);
-                            if(count($img) > 1){
-                            foreach($img as $img){
+                            if(!empty($cate->product[$i]->image)){
+                            $data = $cate->product[$i]->image;
+                            if(count($data) > 1){
+                            foreach($data as $img){
                             echo '<li class="float-left rounded-circle mr-2 more-img"
-                                data-id="'.$cate->product[$i]->id.'" data-src="'.$img.'"
-                                style="background-image:url('.$img.');"></li>';
+                                data-id="'.$cate->product[$i]->id.'" data-src="'.$img->image.'"
+                                style="background-image:url('.$img->image.');"></li>';
                             }
                             }
                             }
@@ -66,7 +65,7 @@
 
             @if($end > 0)
             <div class="col-12 text-center float-left">
-                <a href="category/{{$cate->id}}" class="btn btn-outline-dark btn-md" style="width:50%;">Xem thêm</a>
+                <a href="category/{{$cate->id_category}}" class="btn btn-outline-dark btn-md" style="width:50%;">Xem thêm</a>
             </div>
             @endif
 

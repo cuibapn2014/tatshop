@@ -33,25 +33,25 @@
 		<input type="hidden" name="_token" value="{{csrf_token()}}"/>
 		<div class="form-group">
 			<label for="">Tên sản phẩm</label>
-			<input class="form-control" type="text" name="product" placeholder="Nhập tên sản phẩm"/>
+			<input class="form-control" type="text" name="title" placeholder="Nhập tên sản phẩm"/>
 		</div>
 		<div class="form-group">
 			<label for="">Danh mục</label>
-			<select id="cate" class="form-control" name="category">
+			<select id="cate" class="form-control" name="id_category">
 				@foreach($cate as $cate)
-				<option value="{{$cate->id}}">{{$cate->category}}</option>
+				<option value="{{$cate->id_category}}">{{$cate->category}}</option>
 				@endforeach
 			</select>
 		</div>
 		<div class="form-group">
 			<label for="">Loại</label>
-			<select id="sub_category" class="form-control" name="subcategory">
+			<select id="sub_category" class="form-control" name="id_subcategory">
 				<option>_______ Chọn loại sản phẩm _______</option>
 			</select>
 		</div>
 		<div class="form-group">
 			<label for="">Loại liên quan</label>
-			<input class="form-control" name="relate" type="text"/>
+			<input class="form-control" name="id_relate" type="text"/>
 		</div>
 		<div class="form-group">
 			<label for="">Mô tả sản phẩm</label>

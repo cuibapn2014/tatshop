@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\CodeDiscount, App\Deal;
+use App\Models\CodeDiscount, App\Models\Deal;
 
 class CodeDiscountController extends Controller
 {

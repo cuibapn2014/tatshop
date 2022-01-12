@@ -37,7 +37,7 @@
 
 <body>
     <div class="col-12 position-fixed bg-dark text-right text-white mr-2" style="top:0px;height:50px;z-index:10000;">
-        <img class="float-right mt-1 mx-1 rounded-circle" src="image/user.jpg" width="35px" height="35px"
+        <img class="float-right mt-1 mx-1 rounded-circle" src="{{strpos(Auth::user()->image,'ttps://') == 1 ? Auth::user()->image : 'image/'.Auth::user()->image}}" width="35px" height="35px"
             style="object-fit:cover;" />
         <p class="float-right py-2">Xin chào, {{Auth::user()->name}}</p>
     </div>

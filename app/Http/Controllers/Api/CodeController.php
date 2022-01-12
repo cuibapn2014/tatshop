@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\CodeDiscount;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\product;
-use DB;
 
-class ProductControler extends Controller
+class CodeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,29 +16,7 @@ class ProductControler extends Controller
     public function index()
     {
         //
-        $product = product::with([
-            'subcategory',
-            'subcategory.category' => function($q){
-                $q->select(
-                    'id_category',
-                    'category'
-                );
-            }
-            ])->paginate(15,
-            [
-                'id',
-                'title',
-                'content',
-                'qty',
-                'price',
-                'thumbnail',
-                'discount',
-                'sold',
-                'id_subcategory',
-            ]);
-        // return product::paginate(15);
-        
-        return $product;
+        return CodeDiscount::all();
     }
 
     /**
@@ -51,7 +28,6 @@ class ProductControler extends Controller
     public function store(Request $request)
     {
         //
-        return product::create($request->all());
     }
 
     /**
@@ -60,10 +36,10 @@ class ProductControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(product $product)
+    public function show(CodeDiscount $cd, $code)
     {
         //
-        return $product;
+        return $cd->where("code", $code)->firstOrFail();
     }
 
     /**
@@ -73,10 +49,9 @@ class ProductControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, product $product)
+    public function update(Request $request, $id)
     {
         //
-        return $product->update($request->all());
     }
 
     /**
@@ -85,9 +60,8 @@ class ProductControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(product $product)
+    public function destroy($id)
     {
         //
-        $product->delete();
     }
 }
