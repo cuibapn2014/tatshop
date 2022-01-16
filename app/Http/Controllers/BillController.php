@@ -96,6 +96,7 @@ class BillController extends Controller
 				$payment = new payment();
 				$payment->id_product = $item->id;
 				$payment->name = $item->name;
+				$payment->image = product::find($item->id)->thumbnail;
 				$payment->code_bill = bill::orderBy('id', 'desc')->first()->id;
 				$payment->price = $item->price;
 				$payment->qty = $item->quantity;

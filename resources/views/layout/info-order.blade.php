@@ -53,7 +53,7 @@
                     <input id="code" class="form-control" type="text" name="code" placeholder="Nhập mã giảm" />
                 </div>
                 <div id="notify"></div>
-                <i class="font-weight-bold">*Miễn phí vận chuyển đối với nội thành TP Hồ Chí Minh với đơn hàng từ 150,000đ</i>
+                <i class="font-weight-bold">*Miễn phí vận chuyển đối với nội thành TP Hồ Chí Minh với đơn hàng từ 300,000đ</i>
                 <p>Hình thức thanh toán</p>
                 <div class="col-12 w-100 p-0 pay">
                     <div class="form-group">

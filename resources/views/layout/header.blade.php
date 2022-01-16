@@ -61,15 +61,6 @@
         <div id="search">
             <i class="bi bi-search"></i>
         </div>
-        @if(!Auth::check())
-        <div>
-            <a href="/login"><button class="btn btn-outline-info">Đăng Nhập</button></a>
-        </div>
-        @else
-        <div>
-            <a href="/login" class="bg-info" style="font-size:1rem;"><i class="bi bi-person"></i> {{Auth::user()->name}}</a>
-        </div>
-        @endif
     </div>
 </nav>
 
@@ -109,6 +100,15 @@
                 <li class="font-weight-light p-2">
                     <a class="item-nav" href="ve-chung-toi">VỀ CHÚNG TÔI</a>
                 </li>
+                @if(!Auth::check())
+                <div>
+                    <a href="/login"><button class="btn btn-outline-info">Đăng Nhập</button></a>
+                </div>
+                @else
+                <div>
+                    <a href="/login" class="bg-info" style="font-size:1rem;"><i class="bi bi-person"></i> {{Auth::user()->name}}</a>
+                </div>
+                @endif
             </ul>
         </div>
     </div>
