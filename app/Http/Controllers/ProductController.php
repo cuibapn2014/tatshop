@@ -74,12 +74,9 @@ class ProductController extends Controller
 		$link = Str::slug($req->title);
 		$data = $req->all();
 		$data["str_slug"] = $link;
-		$product = new product();
-		$product->create($data);
+		$product = Product::create($data);
 
-		$product1 = product::all()->last();
-
-		$idp = $product1->id;
+		$idp = $product->id;
 
 		foreach ($req->image as $photo) {
 			$img = new image();

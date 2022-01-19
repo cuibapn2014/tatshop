@@ -85,7 +85,7 @@ class BillController extends Controller
 					$bill->discount = 0;
 				}
 			}
-			$bill->address = $req->address;
+			$bill->address = $req->address.", ".$req->district.", ".$req->province;
 			$bill->phone = $req->phone;
 			$bill->email = $req->email;
 			$bill->stt = 1;

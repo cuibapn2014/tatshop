@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-group">
                     <label for="address">Địa chỉ</label>
-                    <input id="address" class="form-control" type="text" name="address" placeholder="Số nhà/hẻm, tên đường, phường/xã, quận/huyện, tỉnh/thành phố" />
+                    <input id="address" class="form-control" type="text" name="address" placeholder="Số nhà/hẻm, tên đường, phường/xã" />
                 </div>
                 <div class="form-group">
                     <label for="email">Email (Nếu có)</label>
