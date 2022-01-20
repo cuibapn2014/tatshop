@@ -15,16 +15,16 @@ $(document).ready(() => {
     }
 });
 
-window.oncontextmenu = function(){
+window.oncontextmenu = function () {
     return true;
 }
 
 updateCart = ($id, $qty) => {
     $.get("updateCart/" + $id + "/" + $qty, (data) => {
     });
-     setTimeout(() => {
-         window.location.reload();
-     }, 3000);
+    setTimeout(() => {
+        window.location.reload();
+    }, 3000);
 }
 
 var f = 1;
@@ -67,8 +67,6 @@ function changeImg(smallImg) {
 function closeNotice() {
     document.getElementById('notice').style.display = "none";
 }
-var i = 0;
-var xx = 0;
 
 function Img(num) {
     var img = document.getElementsByClassName('thumbnail');

@@ -273,6 +273,8 @@ class AdminController extends Controller
 		$percent = array(0, 0, 0, 0, 0, 0, 0, 0);
 		$product = product::all()->sum('sold');
 		$total = bill::all()->sum('total');
+		$totalSale = product::all()->sum('sold');
+		$todayTotal = bill::where('created_at', \Carbon\Carbon::now())->sum('total');
 		$b = product::all();
 		$last = \Carbon\Carbon::now("Asia/Ho_Chi_Minh")->subMonth(12);
 		$now = \Carbon\Carbon::now("Asia/Ho_Chi_Minh");
@@ -308,7 +310,7 @@ class AdminController extends Controller
 					break;
 			}
 		}
-		return view('shop.admin.analyze', ['bill' => $bill, 'total' => $total, 'product' => $product, 'percent' => $percent]);
+		return view('shop.admin.analyze', ['bill' => $bill, 'total' => $total, 'product' => $product, 'percent' => $percent, 'totalSale' => $totalSale,'todayTotal' => $todayTotal]);
 	}
 
 	public function getUpload()

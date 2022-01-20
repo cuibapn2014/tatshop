@@ -1,6 +1,6 @@
 @extends('layout.layout_master')
 @section('content')
-<div class="container-fluid padding detail mt-4">
+<div class="container-fluid padding detail mt-4 pt-2">
     @if(session('danger'))
     <div class="alert alert-danger">{{session('danger')}}</div>
     @endif
@@ -116,7 +116,6 @@
         </div>
         <div class="col-12 p-0">
             <h2 class="display-4 mt-3" style="font-size:24px;clear:both;">Đánh giá từ khách hàng</h2>
-            <hr />
             @if(count($errors) >0)
             @foreach($errors->all() as $err)
             <p class="alert alert-danger">{{$err}}</p>
@@ -178,104 +177,113 @@
                 @endif
             </div>
         </div>
-        <div class="container-fluid padding p-0 float-left">
+        <div class="container-fluid overflow-hidden float-left">
             @if(count($relate) > 0)
             <h2 class="font-weight-light" style="font-size:28px;">Sản phẩm liên quan</h2>
-            <hr class="bg-dark mt-0" style="height:3px;" />
-            @foreach($relate as $relate)
-            <a href="san-pham/{{$relate->id}}/{{$relate->str_slug}}" title="{{$relate->title}}">
-                <div class="card col-lg-3 col-md-4 col-sm-12 p-0 m-1 float-left">
-                    @if($relate->discount > 0)
-                    <span class="discount text-center">-{{$relate->discount}}%</span>
-                    @endif
-                    <div class="thumbnail">
-                        <img id="img-{{$relate->id}}" data-src="{{$relate->thumbnail}}" style="object-fit:cover;" height="100%" width="100%" />
+            <div class="mySwiper p-2">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    @foreach($relate as $relate)
+                    <div class="swiper-slide">
+                        <a href="san-pham/{{$relate->id}}/{{$relate->str_slug}}" title="{{$relate->title}}">
+                            <div class="col-12 p-0 m-1 float-left border-0">
+                                @if($relate->discount > 0)
+                                <span class="discount text-center">-{{$relate->discount}}%</span>
+                                @endif
+                                <div class="thumbnail">
+                                    <img id="img-{{$relate->id}}" data-src="{{$relate->thumbnail}}" style="object-fit:cover;" height="100%" width="100%" />
+                                </div>
+                                <div class="w-100 col-12 d-inline-block mt-3" style="overflow:hidden;max-height:30px;">
+                                    <ul>
+                                        @php
+                                        if(!empty($relate->image)){
+                                        $data = $relate->image;
+                                        $i = 0;
+                                        if(count($data) > 1){
+                                        foreach($data as $img){
+                                        echo '<li class="float-left rounded-circle mr-2 more-img" data-id="'.$relate->id.'" data-src="'.$img->image.'" style="background-image:url('.$img->image.');"></li>';
+                                        $i++;
+                                        }
+                                        }
+                                        }
+                                        @endphp
+                                    </ul>
+                                </div>
+                                <p class="card-title p-1 text-dark mb-0 font-weight-bold text-left">{{$relate->title}}</p>
+                                <p class="p-1 mb-0 font-weight-bold text-info fs-5">
+                                    @if($relate->discount > 0)
+                                    <s class="font-weight-light text-dark fs-6">{{number_format($relate->price)}}<u>đ</u></s>
+                                    {{number_format($relate->price * (1-($relate->discount / 100)))}}<u>đ</u>
+                                    @else
+                                    {{number_format($relate->price)}}<u>đ</u>
+                                    @endif
+                                </p>
+                            </div>
+                        </a>
                     </div>
-                    <div class="w-100 col-12 d-inline-block mt-3" style="overflow:hidden;max-height:50px;">
-                        <ul>
-                            @php
-                            if(!empty($relate->image->image)){
-                            $data = $relate->image->image;
-                            $img = json_decode($data,true);
-                            $i = 0;
-                            if(count($img) > 1){
-                            foreach($img as $img){
-                            echo '<li class="float-left rounded-circle mr-2 more-img" data-id="'.$relate->id.'" data-src="'.$img.'" style="background-image:url('.$img.');"></li>';
-                            $i++;
-                            }
-                            }
-                            }
-                            @endphp
-                        </ul>
-                    </div>
-                    <p class="card-title p-1 text-dark">{{$relate->title}}</p>
-                    <p class="p-1 text-dark font-weight-bold text-center mb-0">
-                        @if($relate->discount > 0)
-                        <s class=font-weight-light>{{number_format($relate->price)}}<u>đ</u></s>
-                        {{number_format($relate->price * (1-($relate->discount / 100)))}}<u>đ</u>
-                        @else
-                        {{number_format($relate->price)}}<u>đ</u>
-                        @endif
-                    </p>
+                    @endforeach
                 </div>
-            </a>
-            @endforeach
+            </div>
             @endif
         </div>
         <div class="container-fluid padding p-0 float-left mt-2">
             @if(count(session('product')) > 0)
             <h2 class="font-weight-light fs-3">Sản phẩm đã xem gần đây</h2>
-            <hr class="bg-dark mt-0" style="height:3px;" />
-            @for($i = (count($visited)-1);$i >= 0;$i--)
-            <a href="san-pham/{{$visited[$i]['item']->id}}/{{$visited[$i]['item']->str_slug}}" title="{{$visited[$i]['item']->title}}">
-                <div class="card col-lg-3 col-md-4 col-sm-12 p-0 m-1 float-left">
-                    @if($visited[$i]['item']->discount > 0)
-                    <span class="discount text-center">-{{$visited[$i]['item']->discount}}%</span>
-                    @endif
-                    <div class="thumbnail">
-                        <img id="img-{{$visited[$i]['item']->id}}x" data-src="{{$visited[$i]['item']->thumbnail}}" style="object-fit:cover;" class="card-img" height="100%" alt="{{$visited[$i]['item']->title}}" />
+            <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    @for($i = (count($visited)-1);$i >= 0;$i--)
+                    <div class="swiper-slide">
+                        <a href="san-pham/{{$visited[$i]['item']->id}}/{{$visited[$i]['item']->str_slug}}" title="{{$visited[$i]['item']->title}}">
+                            <div class="col-12 p-0 m-1 float-left border-0">
+                                @if($visited[$i]['item']->discount > 0)
+                                <span class="discount text-center">-{{$visited[$i]['item']->discount}}%</span>
+                                @endif
+                                <div class="thumbnail">
+                                    <img id="img-{{$visited[$i]['item']->id}}x" data-src="{{$visited[$i]['item']->thumbnail}}" style="object-fit:cover;" class="card-img" height="100%" alt="{{$visited[$i]['item']->title}}" />
+                                </div>
+                                <div class="w-100 col-12 d-inline-block mt-3" style="overflow:hidden;max-height:30px;">
+                                    <ul>
+                                        @php
+                                        if(!empty($visited[$i]['item']->image)){
+                                        $data = $visited[$i]['item']->image;
+                                        if(count($data) > 1){
+                                        foreach($data as $img){
+                                        echo '<li class="float-left rounded-circle mr-2 more-img" data-id="'.$visited[$i]['item']->id.'x" data-src="'.$img->image.'" style="background-image:url('.$img->image.');"></li>';
+                                        }
+                                        }
+                                        }
+                                        @endphp
+                                    </ul>
+                                </div>
+                                <p class="card-title p-1 text-dark mb-0 font-weight-bold text-left">{{$visited[$i]['item']->title}}</p>
+                                <p class="p-1 mb-0 font-weight-bold text-info fs-5">
+                                    @if($visited[$i]['item']->discount > 0)
+                                    <s class="font-weight-light text-dark fs-6">{{number_format($visited[$i]['item']->price)}}<u>đ</u></s>
+                                    {{number_format($visited[$i]['item']->price * (1-($visited[$i]['item']->discount / 100)))}}<u>đ</u>
+                                    @else
+                                    {{number_format($visited[$i]['item']->price)}}<u>đ</u>
+                                    @endif
+                                </p>
+                            </div>
+                        </a>
                     </div>
-                    <div class="w-100 col-12 d-inline-block mt-3" style="overflow:hidden;max-height:50px;">
-                        <ul>
-                            @php
-                            if(!empty($visited[$i]['item']->image->image)){
-                            $data = $visited[$i]['item']->image->image;
-                            $img = json_decode($data,true);
-                            if(count($img) > 1){
-                            foreach($img as $img){
-                            echo '<li class="float-left rounded-circle mr-2 more-img" data-id="'.$visited[$i]['item']->id.'x" data-src="'.$img.'" style="background-image:url('.$img.');"></li>';
-                            }
-                            }
-                            }
-                            @endphp
-                        </ul>
-                    </div>
-                    <p class="card-title p-1 text-dark">{{$visited[$i]['item']->title}}</p>
-                    <p class="p-1 text-dark font-weight-bold text-center mb-0">
-                        @if($visited[$i]['item']->discount > 0)
-                        <s class="font-weight-light">{{number_format($visited[$i]['item']->price)}}<u>đ</u></s>
-                        {{number_format($visited[$i]['item']->price * (1-($visited[$i]['item']->discount / 100)))}}<u>đ</u>
-                        @else
-                        {{number_format($visited[$i]['item']->price)}}<u>đ</u>
-                        @endif
-                    </p>
+                    @endfor
                 </div>
-            </a>
-            @endfor
+            </div>
             @endif
         </div>
     </div>
     <div class="col-lg-4 col-md-6 col-sm-12 p-1 float-left">
         <h2 class="display-4 mt-3 fs-4" style="clear:both;">Sản phẩm ngẫu nhiên</h2>
-        <hr />
         @if($random)
         @foreach($random->get() as $ran)
         <a href="san-pham/{{$ran->id}}/{{$ran->str_slug}}" title="{{$ran->title}}">
             <div class="p-0 mt-2 ran-pro border d-flex flex-row flex-nowrap">
-                <img id="img-slide" data-src="{{$ran->thumbnail}}" class="card-img w-100 flex-grow-1 thumbnail p-0" style="object-fit:cover;min-width:200px;" />
+                <img id="img-slide" data-src="{{$ran->thumbnail}}" class="card-img w-100 flex-grow-1 thumbnail p-0" style="object-fit:cover;min-width:170px;" />
                 <div class="col-7" style="height:100%;">
-                    <p class="card-title p-1 text-dark" style="font-size:18px;">{{$ran->title}}</p>
-                    <p class="p-1 text-dark font-weight-bold">
+                    <p class="card-title p-1 text-dark mb-0 font-weight-bold text-left">{{$ran->title}}</p>
+                    <p class="p-1 mb-0 font-weight-bold text-info fs-5">
                         @if($ran->discount > 0)
                         {{number_format($ran->price * (1-($ran->discount / 100)))}}<u>đ</u><br />
                         <s class="font-weight-light">{{number_format($ran->price)}}<u>đ</u></s>
@@ -301,6 +309,62 @@
             perPage: 3,
             rewind: true,
         }).mount();
+    });
+</script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".swiper", {
+        slidesPerView: 2,
+        spaceBetween: 10,
+        autoplay: {
+            delay: 5000,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        on: {
+            init: function() {},
+            orientationchange: function() {},
+            beforeResize: function() {
+                let vw = window.innerWidth;
+                if (vw > 1000) {
+                    swiper.params.slidesPerView = 4;
+                } else {
+                    swiper.params.slidesPerView = 2;
+                }
+                swiper.init();
+            },
+        },
+
+    });
+
+    var mySwiper = new Swiper(".mySwiper", {
+        slidesPerView: 2,
+        spaceBetween: 10,
+        autoplay: {
+            delay: 3000,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        on: {
+            init: function() {},
+            orientationchange: function() {},
+            beforeResize: function() {
+                let vw = window.innerWidth;
+                if (vw > 1000) {
+                    mySwiper.params.slidesPerView = 4;
+                } else {
+                    mySwiper.params.slidesPerView = 2;
+                }
+                mySwiper.init();
+            },
+        },
+
     });
 </script>
 @endsection

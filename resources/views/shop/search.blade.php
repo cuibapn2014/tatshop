@@ -16,7 +16,7 @@
             "<strong>{{$keyword}}</strong>"</p>
         @foreach($product as $product)
         <a href="san-pham/{{$product->id}}/{{$product->str_slug}}" title="{{$product->title}}">
-            <div class="card col-lg-3 col-md-4 col-sm-12 p-0 m-1 float-left">
+            <div class="card col-lg-3 col-md-4 col-sm-12 p-0 m-1 float-left border-0">
                 @if($product->discount > 0)
                 <span class="discount text-center">-{{$product->discount}}%</span>
                 @endif
@@ -24,8 +24,7 @@
                     <img id="img-{{$product->id}}" data-src="{{$product->thumbnail}}" style="object-fit:cover;" height="100%" width="100%"
                         alt="{{$product->title}}" />
                 </div>
-                <p class="card-title p-1 text-dark mb-1">{{$product->title}}</p>
-                <div class="w-100 col-12 d-inline-block mt-0" style="overflow:hidden;max-height:50px;">
+                <div class="w-100 col-12 d-inline-block mt-2" style="overflow:hidden;max-height:30px;">
                     <ul>
                         @php
                         if(!empty($product->image)){
@@ -42,9 +41,10 @@
                         @endphp
                     </ul>
                 </div>
-                <p class="p-1 text-dark font-weight-bold text-center mb-0">
+                <p class="card-title p-1 text-dark mb-0 font-weight-bold text-left">{{$product->title}}</p>
+                <p class="p-1 mb-0 font-weight-bold text-info fs-5">
                     @if($product->discount > 0)
-                    <s class=font-weight-light>{{number_format($product->price)}}<u>đ</u></s>
+                    <s class="font-weight-light text-dark fs-6">{{number_format($product->price)}}<u>đ</u></s>
                     {{number_format($product->price * (1-($product->discount / 100)))}}<u>đ</u>
                     @else
                     {{number_format($product->price)}}<u>đ</u>

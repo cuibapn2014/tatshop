@@ -44,7 +44,7 @@ class CartController extends Controller
 
 	public function update($id, $qty)
 	{
-		if ($id == Cart::getContent()->first()->id) {
+		//if ($id == Cart::getContent()->first()->id) {
 			Cart::update(
 				$id,
 				array(
@@ -55,7 +55,7 @@ class CartController extends Controller
 				)
 			);
 			return Cart::getTotal();
-		}
+		//}
 	}
 
 	public function destroy($id)

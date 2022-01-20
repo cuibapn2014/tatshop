@@ -13,24 +13,16 @@ $(document).ready(function () {
         $('#color').append('<input class="form-control mt-2" type="text" name="color[]"/>');
     });
 
-    $(window).scroll(function (event) {
-        var body = $('html,body').scrollTop();
-        if (body > 20) {
-            $('.navbar').addClass('fade-In');
-            $('.navbar-brand').addClass('black-mode');
-            $('.nav-link').addClass('black-mode');
-            $('.cart i').addClass('black-mode');
-            $('.nevigate i').addClass('black-mode');
-            $('#search i').addClass('black-mode');
-        } else {
-            $('.navbar').removeClass('fade-In');
-            $('.navbar-brand').removeClass('black-mode');
-            $('.nav-link').removeClass('black-mode');
-            $('.cart i').removeClass('black-mode');
-            $('.nevigate i').removeClass('black-mode');
-            $('#search i').removeClass('black-mode');
-        }
-    });
+    // $(window).scroll(function (event) {
+    //     //var body = $('html,body').scrollTop();
+    //         $('.navbar').addClass('fade-In');
+    //         $('.navbar-brand').addClass('black-mode');
+    //         $('.nav-link').addClass('black-mode');
+    //         $('.cart i').addClass('black-mode');
+    //         $('.nevigate i').addClass('black-mode');
+    //         $('#search i').addClass('black-mode');
+        
+    // });
 
     $("div#back-top").hide();
     $(window).scroll(function (event) {

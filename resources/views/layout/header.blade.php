@@ -1,7 +1,7 @@
 <!--Navigation-->
 
-<nav class="navbar navbar-expand-lg navbar-light navMenu">
-    <a class="navbar-brand" href="/">
+<nav class="navbar navbar-expand-lg navbar-light navMenu py-0 fade-In">
+    <a class="navbar-brand black-mode" href="/">
         <img src="image/_logo1.png" alt="logo-tat" height="50px" />
     </a>
     <button class="navbar-toggler border-light bg-light" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,28 +10,35 @@
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item font-weight-light active">
-                <a class="nav-link" href="/">HOME<span class="sr-only">(current)</span></a>
+            <li class="nav-item font-weight-normal active">
+                <a class="nav-link fs-6 black-mode" href="/">HOME<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item font-weight-light">
-                <a class="nav-link" href="san-pham">SẢN PHẨM</a>
+            <li class="nav-item font-weight-normal">
+                <a class="nav-link fs-6 black-mode" href="san-pham">SẢN PHẨM</a>
             </li>
-            <li class="nav-item font-weight-light">
-                <a class="nav-link" href="blog">BLOG</a>
+            <li class="nav-item font-weight-normal">
+                <a class="nav-link fs-6 black-mode" href="blog">BLOG</a>
             </li>
-            <li class="nav-item font-weight-light">
-                <a class="nav-link" href="ve-chung-toi">VỀ CHÚNG TÔI</a>
+            <li class="nav-item font-weight-normal">
+                <a class="nav-link fs-6 black-mode" href="ve-chung-toi">VỀ CHÚNG TÔI</a>
             </li>
         </ul>
     </div>
     <div class="float-right d-flex flex-row-reverse flex-nowrap align-items-center">
         <div class="nevigate">
             <button class="btn btn-white">
-                <i class="bi bi-list"></i>
+                <i class="bi bi-list black-mode"></i>
             </button>
         </div>
+        <div class="btn-login">
+            @if(!Auth::check())
+            <button class="btn btn-info ml-3 rounded" onclick="location.href='/login'">Đăng nhập</button>
+            @else
+            <button class="btn btn-info ml-3 rounded" onclick="location.href='/login'">{{Auth::user()->name}}</button>
+            @endif
+        </div>
         <div class="cart">
-            <i class="bi bi-cart3" style="font-size:33px;"></i>
+            <i class="bi bi-bag-fill fs-4 black-mode"></i>
             <sup class="sup_cart bg-info" id="sup_cart">{{Cart::getTotalQuantity()}}</sup>
         </div>
         <div class="cart-detail p-1 hide">
@@ -59,19 +66,14 @@
                 {{number_format(Cart::getTotal())}}<sup>đ</sup></button>
         </div>
         <div id="search">
-            <i class="bi bi-search"></i>
+            <i class="bi bi-search fs-5 black-mode"></i>
         </div>
+
     </div>
 </nav>
 
 <!--Carousel Slide-->
 <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img class="w-100" src="https://images.unsplash.com/photo-1614990354198-b06764dcb13c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1800&q=80" style="object-fit:cover;height:500px;" />
-        </div>
-    </div>
-
     <div id="search-form">
         <button type="button" class="btn-close btn-close-white close-search" aria-label="Close"></button>
         <form action="search" method="post">
@@ -83,7 +85,6 @@
             </div>
         </form>
     </div>
-
     <div id="nevigation">
         <button type="button" class="btn-close btn-close-white close-nav" aria-label="Close"></button>
         <div class="navbar-link">
@@ -102,13 +103,14 @@
                 </li>
                 @if(!Auth::check())
                 <div>
-                    <a href="/login"><button class="btn btn-outline-info">Đăng Nhập</button></a>
+                    <a href="/login"><button class="btn btn-outline-info p-2 text-center">Đăng Nhập</button></a>
                 </div>
                 @else
                 <div>
-                    <a href="/login" class="bg-info" style="font-size:1rem;"><i class="bi bi-person"></i> {{Auth::user()->name}}</a>
+                    <a href="/login" class="btn btn-info p-2" style="font-size:1rem;"><i class="bi bi-person"></i> {{Auth::user()->name}}</a>
                 </div>
                 @endif
             </ul>
         </div>
     </div>
+</div>

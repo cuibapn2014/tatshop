@@ -8,6 +8,8 @@
     <base href="{{asset('')}}" />
     <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/admin.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css" />
@@ -37,13 +39,26 @@
 
 <body>
     <div class="col-12 position-fixed bg-dark text-right text-white mr-2" style="top:0px;height:50px;z-index:10000;">
-        <img class="float-right mt-1 mx-1 rounded-circle" src="{{strpos(Auth::user()->image,'ttps://') == 1 ? Auth::user()->image : 'image/'.Auth::user()->image}}" width="35px" height="35px"
-            style="object-fit:cover;" />
+        <img class="float-right mt-1 mx-1 rounded-circle"
+            src="{{strpos(Auth::user()->image,'ttps://') == 1 ? Auth::user()->image : 'image/'.Auth::user()->image}}"
+            width="35px" height="35px" style="object-fit:cover;" />
         <p class="float-right py-2">Xin chào, {{Auth::user()->name}}</p>
     </div>
     <!---DASHBOARD-->
     <div id="menu" class="col-lg-3 col-md-5 col-sm-12 bg-dark float-left position-fixed dashboard">
-        @yield('dashboard')
+        <img src="image/_logo1.png" class="pl-3" height="60px" style="object-fit:contain;" />
+        <a id="close" class="col-12 text-right" href="javascript:void(0)" onclick="closeMenu()"><i
+                class="bi bi-x"></i></a>
+        <div class="col-12 pt-2 px-0">
+            <a class="option col-12 fs-6 text-light" href="admin"><i class="bi bi-speedometer2"></i> Bảng điều
+                khiển</a>
+            <a class="option col-12 fs-6 text-light" href="admin/bills"><i class="bi bi-truck"></i> Đơn đặt
+                hàng</a>
+            <a class="option col-12 fs-6 text-light" href="admin/analyze"><i class="bi bi-graph-up"></i> Phân tích</a>
+            <a class="option col-12 fs-6 text-light" href="admin/bao-mat"><i class="bi bi-shield-fill"></i> Bảo
+                mật</a>
+            <a class="option col-12 fs-6 text-light" href="logout"><i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
+        </div>
     </div>
 
     <!--DISPLAYS-->
@@ -53,14 +68,19 @@
     </div>
 
     <!--Script Bootstrap --->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
     <!-- Optional JavaScript -->
     @yield('script')
     <script src="js/script.js"></script>

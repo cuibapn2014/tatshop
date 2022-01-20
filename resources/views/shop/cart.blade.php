@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-fluid padding detail mt-4">
     @if(session('notice'))
-    <div class="alert alert-success">
+    <div class="alert alert-success mt-2">
         <span class="closebtn float-right" onclick="this.parentElement.style.display='none';">&times;</span>
         {{session('notice')}}
     </div>
@@ -34,7 +34,8 @@
             <img class="col-4 img-cart float-left" src="{{$item->attributes->img}}" height="200px" />
             <div class="col-8 float-left">
                 <div class="close-icon">
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal-{{$key}}">
+                    <button type="button" class="btn btn-dark btn-sm rounded-circle" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal-{{$key}}">
                         <i class="bi bi-x"></i>
                     </button>
                 </div>
@@ -45,37 +46,45 @@
                 <p class="w-100 float-left">Số lượng:</p>
                 <div class="w-100 float-left mt-0 pt-0">
                     <button class="btn btn-light float-left minus"><i class="bi bi-dash-lg"></i></button>
-                    <input id="amount_{{$key}}" class="float-left text-center border-0 amount" data-id="{{$item->id}}" style="height:37px;width:50px;" type="number" readonly value="{{$item->quantity}}" />
+                    <input id="amount_{{$key}}" class="float-left text-center border-0 amount" data-id="{{$item->id}}"
+                        style="height:37px;width:50px;" type="number" readonly value="{{$item->quantity}}" />
                     <button class="btn btn-light float-left plus"><i class="fbi bi-plus-lg"></i></button>
                 </div>
-                <a class="btn btn-dark my-2 text-white update-cart float-left" data="{{$key}}">Cập nhật <i class="far fa-edit"></i></a>
+                <a class="btn btn-dark my-2 text-white update-cart float-left" data="{{$key}}">Cập nhật <i
+                        class="far fa-edit"></i></a>
             </div>
         </div>
         <hr style="clear:both;" />
-        @php $key++ @endphp
-        <!--MODAL FORM-->
-        <div class="modal fade" id="exampleModal-{{$key}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal-{{$key}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Xóa sản phẩm khỏi giỏ</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng ?
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <a href="cart/delete/{{$item->id}}"><button type="button" class="btn btn-primary">Save changes</button></a>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <a href="cart/delete/{{$item->id}}"><button type="button" class="btn btn-primary">Đồng
+                                ý</button></a>
                     </div>
                 </div>
             </div>
         </div>
+        @php $key++ @endphp
+        <!--MODAL FORM-->
+
 
         @endforeach
-        <a class="btn btn-warning m-2 text-white" href="cart/cancel">Xóa giỏ hàng <i class="fas fa-trash-alt"></i></a>
-        <button id="btn-order" type="button" class="btn btn-danger m-2 text-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Đặt hàng</button>
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <a class="btn btn-warning m-2 text-white" href="cart/cancel">Xóa giỏ hàng <i
+                class="fas fa-trash-alt"></i></a>
+        <button id="btn-order" type="button" class="btn btn-danger m-2 text-white" data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop">Đặt hàng</button>
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -85,7 +94,7 @@
                     @php
                     $qty = 0;
                     foreach(Cart::getContent() as $item){
-                        $qty += $item->quantity;
+                    $qty += $item->quantity;
                     }
                     @endphp
                     <div class="modal-body" id="order-form" data-quantity="{{$qty}}">
@@ -145,103 +154,104 @@
 <script src="js/__script.js"></script>
 <script src="js/ajax-payment.js"></script>
 <script type="text/javascript">
-    let value = {{session()->get('totalPrice')}};
+    let value = {{ session() -> get('totalPrice')}};
     let qty;
     var feeship = 0;
-    const totalPrice = {{session()->get('totalPrice')}};
-    
+    const totalPrice = {{ session() -> get('totalPrice')}};
+
     $(document).ready(($) => {
         var code = $("#code");
         var bill = $("#bill-pay");
-        var total = {{Cart::getTotal()}};
-        let districts = $("#district");
-        var orgi = $("._discnt:eq(0)").html();
-        qty = $("#order-form").attr("data-quantity");
+        var total = {{ Cart:: getTotal()
+    }};
+    let districts = $("#district");
+    var orgi = $("._discnt:eq(0)").html();
+    qty = $("#order-form").attr("data-quantity");
 
-        code.on("keyup", (e) => {
-            $.get("ajaxCode/" + code.val() + "/" + total, (data) => {
-                if (code.val() != null) {
-                    if (data > 0) {
-                        value = totalPrice - (data / 100 * total);
-                        let percent;
-                        if (total > 300000 && total < 1000000) {           
-                          percent = 5;
-                        } else if (total > 1000000) {             
-                          percent = 10;
-                        } else {
-                          percent = 0;
-                        }
-                        $("._discnt:eq(0)").html(percent + "% + Mã giảm " + data + "% ~" + (total * (
-                                data / 100)).toLocaleString('vi', {
-                                style: 'currency',
-                                currency: 'VND'
-                            }));
-                        $("._pay:eq(0)").html((value + feeship).toLocaleString(
-                                'vi', {
-                                    style: 'currency',
-                                    currency: 'VND'
-                                }));
-                    } else if (data == -1) {
-                        value = totalPrice + feeship;
-                        $("._discnt:eq(0)").html(orgi);
-                        $("._pay:eq(0)").html(value.toLocaleString(
-                                'vi', {
-                                    style: 'currency',
-                                    currency: 'VND'
-                                }));
-                        $("#notify").html(
-                            "<p class='alert alert-warning'>Giá trị đơn hàng chưa đạt điều kiện</p>"
-                        );
-                    } else if (data == -2) {
-                        value = totalPrice + feeship;
-                        $("._discnt:eq(0)").html(orgi);
-                        $("._pay:eq(0)").html(value.toLocaleString(
-                                'vi', {
-                                    style: 'currency',
-                                    currency: 'VND'
-                                }));
-                        $("#notify").html(
-                            "<p class='alert alert-warning'>Mã giảm giá đã hết hiệu lực</p>");
-                    } else if (data == 0) {
-                        value = totalPrice + feeship;
-                        $("._discnt:eq(0)").html(orgi);
-                        $("._pay:eq(0)").html(value.toLocaleString(
-                                'vi', {
-                                    style: 'currency',
-                                    currency: 'VND'
-                                }));
-                        $("#notify").html(null);
+    code.on("keyup", (e) => {
+        $.get("ajaxCode/" + code.val() + "/" + total, (data) => {
+            if (code.val() != null) {
+                if (data > 0) {
+                    value = totalPrice - (data / 100 * total);
+                    let percent;
+                    if (total > 300000 && total < 1000000) {
+                        percent = 5;
+                    } else if (total > 1000000) {
+                        percent = 10;
+                    } else {
+                        percent = 0;
                     }
-                
+                    $("._discnt:eq(0)").html(percent + "% + Mã giảm " + data + "% ~" + (total * (
+                        data / 100)).toLocaleString('vi', {
+                            style: 'currency',
+                            currency: 'VND'
+                        }));
+                    $("._pay:eq(0)").html((value + feeship).toLocaleString(
+                        'vi', {
+                        style: 'currency',
+                        currency: 'VND'
+                    }));
+                } else if (data == -1) {
+                    value = totalPrice + feeship;
+                    $("._discnt:eq(0)").html(orgi);
+                    $("._pay:eq(0)").html(value.toLocaleString(
+                        'vi', {
+                        style: 'currency',
+                        currency: 'VND'
+                    }));
+                    $("#notify").html(
+                        "<p class='alert alert-warning'>Giá trị đơn hàng chưa đạt điều kiện</p>"
+                    );
+                } else if (data == -2) {
+                    value = totalPrice + feeship;
+                    $("._discnt:eq(0)").html(orgi);
+                    $("._pay:eq(0)").html(value.toLocaleString(
+                        'vi', {
+                        style: 'currency',
+                        currency: 'VND'
+                    }));
+                    $("#notify").html(
+                        "<p class='alert alert-warning'>Mã giảm giá đã hết hiệu lực</p>");
+                } else if (data == 0) {
+                    value = totalPrice + feeship;
+                    $("._discnt:eq(0)").html(orgi);
+                    $("._pay:eq(0)").html(value.toLocaleString(
+                        'vi', {
+                        style: 'currency',
+                        currency: 'VND'
+                    }));
+                    $("#notify").html(null);
                 }
 
-            });
+            }
+
         });
-        
-        districts.change((e) => {
-            let province = $("#province").val();
-            let district = $("#district").val();
-            let shipFee = $(".ship-fee");
-            $.get("/cal-fee/province=" + province + "&district=" + district + "&qty=" + qty + "&value=" + value,(data) => {
-                let obj = JSON.parse(data);
-                let fee = obj.fee.fee;
-                feeship = fee;
-                $("#fee").val(fee);
-                $("._pay:eq(0)").html((value + feeship).toLocaleString(
-                                'vi', {
-                                    style: 'currency',
-                                    currency: 'VND'
-                                }));
-                if(feeship != 0){
-                shipFee.text(fee.toLocaleString('vi',{
+    });
+
+    districts.change((e) => {
+        let province = $("#province").val();
+        let district = $("#district").val();
+        let shipFee = $(".ship-fee");
+        $.get("/cal-fee/province=" + province + "&district=" + district + "&qty=" + qty + "&value=" + value, (data) => {
+            let obj = JSON.parse(data);
+            let fee = obj.fee.fee;
+            feeship = fee;
+            $("#fee").val(fee);
+            $("._pay:eq(0)").html((value + feeship).toLocaleString(
+                'vi', {
+                style: 'currency',
+                currency: 'VND'
+            }));
+            if (feeship != 0) {
+                shipFee.text(fee.toLocaleString('vi', {
                     style: 'currency',
                     currency: 'VND'
                 }))
-            }else{
+            } else {
                 shipFee.text("0đ");
             }
-            });
         });
+    });
 
     });
 </script>

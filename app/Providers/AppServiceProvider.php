@@ -8,6 +8,7 @@ use View, Auth, App\Models\Product;
 use Carbon\Carbon;
 use Cart, Session;
 use App\Models\Reply, App\Models\Blog, App\Models\Category, App\Models\Deal, App\Models\CodeDiscount;
+use Illuminate\Contracts\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
         $now = Carbon::now("Asia/Ho_Chi_Minh");
 		$total = Cart::getTotal();
 		$mostBuy = Product::orderBy("sold","desc")->take(10)->get();
-		$sale = Product::where("discount",">",0)->orderBy("discount","desc")->take(10)->get();
+		$sale = Product::where("discount",">",0)->orderBy("discount","desc")->take(8)->get();
 		$comment = Reply::where("vote",">=",3)->take(10)->get();
 		$blog = Blog::take(10)->get();
 		$filters = Category::all();

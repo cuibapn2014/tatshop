@@ -1,17 +1,7 @@
 @extends('layout.layout_admin')
-@section('dashboard')
-<img src="image/_logo1.png" class="pl-3" height="60px" style="object-fit:contain;"/>
-<a id="close" class="col-12 text-right" href="javascript:void(0)" onclick="closeMenu()"><i class="fas fa-times"></i></a>
-<div class="col-12">
-	<a class="option col-12 " href="admin"><i class="fas fa-tachometer-alt"></i> Bảng điều khiển</a>
-	<a class="option col-12 active" href="admin/bills"><i class="fas fa-truck"></i> Đơn đặt hàng</a>
-	<a class="option col-12 " href="admin/bao-mat"><i class="fas fa-shield-alt"></i> Bảo mật</a>
-	<a class="option col-12 " href="logout"><i class="fas fa-sign-out-alt"></i> Đăng Xuất</a>
-	</div>
-@endsection
 
 @section('display')
-<a class="open" href="javascript:void(0)" onclick="openMenu()"><i class="fas fa-bars" style="font-size:36px;"></i></a>
+<a class="open" href="javascript:void(0)" onclick="openMenu()"><i class="bi bi-list fs-1"></i></a>
 <h2 class="display-4" style="font-size:36px">Chi tiết đơn hàng của {{$bill->customer}}</h2>
 @foreach($detail as $pay)
 	<div class="col-12 border p-2 mb-2" style="height:200px">

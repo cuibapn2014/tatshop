@@ -38,23 +38,6 @@ $(document).ready(() => {
 });
 
 $(document).ready(() => {
-    var category = document.getElementById('category');
-    var j = 0;
-    var more = document.getElementById('more');
-    more.addEventListener("click", function (event) {
-        if (j == 0) {
-            j += 1;
-            category.style.height = "350px";
-            more.innerHTML = "Thu gọn <i class='fas fa-chevron-up pt-1'></i>"
-        } else {
-            j = 0;
-            category.style.height = "215px";
-            more.innerHTML = "Xem thêm <i class='fas fa-chevron-down pt-1'></i>";
-        }
-    })
-});
-
-$(document).ready(() => {
     const search = $('#search');
     const form = $('#search-form');
     const close = $('.close-search');

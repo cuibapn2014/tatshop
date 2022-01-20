@@ -23,7 +23,7 @@ class ProductController extends Controller
 	public function index()
 	{
 		//
-		$product = Product::orderBy('id', 'desc')->take(30)->get();
+		$product = Product::orderBy('id', 'desc')->take(24)->get();
 		if (!Cache::has('lastest-update'))
 			Cache::add('lastest-update', $product, $this->minutesCache);
 		$getCache = Cache::get('lastest-update');
@@ -137,7 +137,7 @@ class ProductController extends Controller
 			$product2 = $id;
 		}
 		$visited = session('product');
-		$relate = product::where('id_category', $id->id_category)->orWhere('id_subcategory', $id->id_subcategory)->orderBy('id', 'desc')->take(10)->get();
+		$relate = product::where('id_category', $id->id_category)->orWhere('id_subcategory', $id->id_subcategory)->orderBy('id', 'desc')->take(8)->get();
 		$reply = reply::where('reply', $id->id)->orderBy('id', 'desc')->get();
 		return view('shop.detailPro', ['product' => $id, 'random' => $product2, 'reply' => $reply, 'relate' => $relate, 'visited' => $visited]);
 	}
