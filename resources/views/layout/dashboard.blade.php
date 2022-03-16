@@ -73,7 +73,7 @@ $visited = session('product');
     </div>
     @endif
     @if($data_share['comment']->count() > 0)
-    <h2 class="font-weight-light mt-2" style="font-size:28px;">Nhận xét của khách hàng</h2>
+    <h2 class="font-weight-light mt-2" style="font-size:24px;">Nhận xét của khách hàng</h2>
     <div class="mySwiper" style="height: 300px;">
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
@@ -93,7 +93,7 @@ $visited = session('product');
     </div>
     @endif
     @if($data_share['blog']->count() > 0)
-    <h2 class="font-weight-light mt-3" style="font-size:28px;">Nhật ký của TAT</h2>
+    <h2 class="font-weight-light mt-3" style="font-size:24px;">Nhật ký của TAT</h2>
     <div class="mySwiperBlog" style="height: 300px;">
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">

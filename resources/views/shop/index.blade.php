@@ -120,6 +120,11 @@
     </div>
     @include('layout.dashboard')
 </div>
+<div class="display-poster w-100 position-fixed">
+    <span id="close-poster" class="position-absolute text-white fs-3" style="top:10px;right:10px;"><i class="bi bi-x-square-fill"></i></span>
+    <img class="poster col-lg-3 col-md-4 col-sm-4" src="./image/ads/poster.png" alt="poster"/>
+</div>
+<script src="./js/home/script.js" defer></script>
 @endsection
 @section('ads')
 <div class="carousel-inner mt-5">

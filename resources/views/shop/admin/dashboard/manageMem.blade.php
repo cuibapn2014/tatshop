@@ -11,6 +11,7 @@
     <thead>
       <tr>
         <th scope="col">ID</th>
+        <th scope="col">Ảnh đại diện</th>
         <th scope="col">Tên quản trị viên</th>
         <th scope="col">Email</th>
         <th scope="col">Ngày sinh</th>
@@ -20,8 +21,12 @@
     <tbody>
 
       @foreach($user as $u)
+      @php
+      $urlImage = strpos($u->image,"http") != false ? $u->image : "./image/".$u->image;
+      @endphp
       <tr>
         <th scope="row">{{$u->id}}</th>
+        <td><img class="rounded-circle" height="50px" width="50px" src="{{$urlImage}}" alt="{{$u->name}}" /></td>
         <td>{{$u->name}}</td>
         <td>{{$u->email}}</td>
         <td>{{$u->birthday}}</td>

@@ -1,24 +1,27 @@
 @extends('layout.layout_admin')
 @section('display')
 <a class="open" href="javascript:void(0)" onclick="openMenu()"><i class="bi bi-list fs-1"></i></a>
-<h2 class="display-4" style="font-size:36px">Đơn đặt hàng</h2>
-<hr />
+<h2 class="display-4 border-bottom pb-2 fs-3">Đơn đặt hàng</h2>
 <div class="col-12 w-100 p-0 text-center d-flex flex-row flex-wrap justify-content-around">
-    <p class="col-lg-3 col-sm-12 bg-warning p-3 text-white float-left font-weight-light d-flex flex-column"
-        style="font-size:36px;">
+    <p class="col-lg-3 col-sm-12 bg-warning p-3 rounded shadow text-white float-left font-weight-light d-flex flex-column option-filter"
+        style="font-size:36px;cursor:pointer;" data-status="1">
         {{count($confirm)}}
         <span class="fs-4"><i class="bi bi-clipboard"></i> Chờ xác nhận</span>
     </p>
-    <p class="col-lg-3 col-sm-12 bg-success p-3 text-white float-left font-weight-light d-flex flex-column"
-        style="font-size:36px;">
+    <p class="col-lg-3 col-sm-12 bg-success p-3 rounded shadow text-white float-left font-weight-light d-flex flex-column option-filter"
+        style="font-size:36px;cursor:pointer;" data-status="3">
         {{count($transfering)}}
         <span class="fs-4"><i class="bi bi-truck"></i> Đang vận chuyển</span>
     </p>
-    <p class="col-lg-3 col-sm-12 bg-info p-3 text-white float-left font-weight-light d-flex flex-column"
-        style="font-size:36px;">
+    <p class="col-lg-3 col-sm-12 bg-info p-3 rounded shadow text-white float-left font-weight-light d-flex flex-column option-filter"
+        style="font-size:36px;cursor:pointer;" data-status="4">
         {{count($recieved)}}
         <span class="fs-4"> <i class="bi bi-check-circle"></i> Đã giao</span>
     </p>
+</div>
+<div class="form-group">
+    <label for="search">Khách hàng</label>
+    <input id="search" class="col-lg-4 col-md-6 col-sm-12 mx-2 form-control customer-input" type="text" placeholder="Tìm kiếm hóa đơn">
 </div>
 @if(session('notice'))
 <p class="alert alert-success">{{session('notice')}}</p>
@@ -26,7 +29,8 @@
 @if(count($bills) > 0)
 <div class="container d-flex flex-row flex-wrap justify-content-between">
     @foreach($bills as $bill)
-    <div class="col-lg-3 col-md-6 col-sm-12 border p-2 d-inline-block m-1 bg-light" style="height:auto">
+    <div class="col-lg-3 col-md-6 col-sm-12 border p-2 m-1 bg-light item-bill" style="height:auto"
+        data-status="{{$bill->stt}}" data-customer="{{$bill->customer}}">
         <div class="col-12">
             <p class="mb-1" style="font-size:22px">{{$bill->customer}}</p>
             <p class="mb-1"><i class="fas fa-phone text-info"></i> {{$bill->phone}}</p>
@@ -110,6 +114,13 @@
 @else
 <p class="text-center">Chưa có đơn đặt hàng nào</p>
 @endif
+<div class="position-fixed tips p-3 bg-info shadow text-white "
+    style="top:80px;right:10px;transition: opacity .3s ease-in-out;opacity:0;">
+    <span><i class="bi bi-info-circle-fill"></i> Chỉ dẫn: Nhấp vào trạng thái đơn hàng để dễ dàng tìm kiếm đơn hàng !</span>
+</div>
+@endsection
+@section("script")
+<script src="./js/admin/script.js" defer></script>
 @endsection
 @section('title')
 Đơn đặt hàng

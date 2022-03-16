@@ -4,7 +4,7 @@
 <a class="open" href="javascript:void(0)" onclick="openMenu()"><i class="bi bi-list fs-1"></i></a>
 <h2 class="display-4" style="font-size:36px">Chi tiết đơn hàng của {{$bill->customer}}</h2>
 @foreach($detail as $pay)
-	<div class="col-12 border p-2 mb-2" style="height:200px">
+	<div class="col-12 p-2 mb-2 d-flex flex-row flex-nowrap" style="height:200px">
 		<img class="float-left" src="{{$pay->product->thumbnail}}" height="100%" style="object-fit:contain"/>
 		<div class="float-left ml-4">
 			<p>{{$pay->name}}</hp>

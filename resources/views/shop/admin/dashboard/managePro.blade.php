@@ -38,7 +38,7 @@
 		<thead>
 			<tr>
 				<th scope="col">ID</th>
-				<th scope="col">Tên Sản Phẩm</th>
+				<th scope="col">Sản Phẩm</th>
 				<th scope="col">Danh mục</th>
 				<th scope="col">Loại</th>
 				<th scope="col">Giá</th>
@@ -56,10 +56,9 @@
 			?>
 			@if($_product != null)
 			@foreach($_product as $product)
-			<tr onmouseover="Img(<?php echo $i; ?>)" onmouseout="outImg(<?php echo $i; ?>)">
-				<img class="thumbnail" src="{{$product->thumbnail}}" width="300px" style="object-fit: cover;" />
+			<tr>
 				<th scope="row">{{$product->id}}</th>
-				<td class="info-product">{{$product->title}}</td>
+				<td class="info-product"><img src="{{$product->thumbnail}}" width="70px" title="{{$product->title}}"/></td>
 				<td>{{$product->category->category}}</td>
 				<td>{{$product->subcategory->sub_category}}</td>
 				<td>{{number_format($product->price)}}đ</td>

@@ -22,17 +22,16 @@
     <p class="alert alert-danger">{{ $err }}</p>
     @endforeach
     @endif
-    <div class="col-lg-9 col-md-6 col-sm-12 p-0 cart-info float-left">
-        <h2 class="font-weight-light" style="font-size:28px;">Giỏ hàng của bạn
+    <div class="col-lg-9 col-md-6 col-sm-12 px-0 py-2 cart-info float-left">
+        <h2 class="font-weight-light border-bottom py-2" style="font-size:28px;">Giỏ hàng của bạn
             <i class="bi bi-basket"></i>
         </h2>
-        <hr class="bg-dark mt-0" style="height:3px;" />
         @if(count($cart)>0)
         @php $key = 0 @endphp
         @foreach($cart as $item)
-        <div class="shop-cart col-12 position-relative">
-            <img class="col-4 img-cart float-left" src="{{$item->attributes->img}}" height="200px" />
-            <div class="col-8 float-left">
+        <div class="shop-cart col-12 position-relative d-flex flex-row flex-nowrap border-bottom">
+            <img class="col-3 img-cart float-left" src="{{$item->attributes->img}}" height="200px" />
+            <div class="col-9 float-left">
                 <div class="close-icon">
                     <button type="button" class="btn btn-dark btn-sm rounded-circle" data-bs-toggle="modal"
                         data-bs-target="#exampleModal-{{$key}}">
@@ -54,7 +53,6 @@
                         class="far fa-edit"></i></a>
             </div>
         </div>
-        <hr style="clear:both;" />
         <div class="modal fade" id="exampleModal-{{$key}}" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
@@ -101,7 +99,7 @@
                         @include('layout.info-order')
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đợi một lát</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
                     </div>
                 </div>
             </div>
@@ -255,6 +253,15 @@
 
     });
 </script>
+@if(session('success'))
+<script>
+    $(document).ready(() => {
+        $.get('/notification', data => {
+            console.log("success");
+        });
+    });
+</script>
+@endif
 @endsection
 @section('title')
 Giỏ hàng của bạn

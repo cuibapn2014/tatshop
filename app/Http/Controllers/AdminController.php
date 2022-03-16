@@ -274,9 +274,9 @@ class AdminController extends Controller
 		$product = product::all()->sum('sold');
 		$total = bill::all()->sum('total');
 		$totalSale = product::all()->sum('sold');
-		$todayTotal = bill::where('created_at', \Carbon\Carbon::now())->sum('total');
+		$todayTotal = bill::whereDate('created_at', \Carbon\Carbon::today())->sum('total');
 		$b = product::all();
-		$last = \Carbon\Carbon::now("Asia/Ho_Chi_Minh")->subMonth(12);
+		$last = \Carbon\Carbon::now("Asia/Ho_Chi_Minh")->subMonth(1);
 		$now = \Carbon\Carbon::now("Asia/Ho_Chi_Minh");
 		$bill = bill::whereBetween('created_at', [$last, $now])->get();
 		foreach ($b as $b) {

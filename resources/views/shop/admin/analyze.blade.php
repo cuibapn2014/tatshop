@@ -30,7 +30,7 @@
         type: 'column',
       },
       title: {
-        text: 'Thống kê doanh thu 12 tháng gần đây',
+        text: 'Thống kê doanh thu 30 ngày gần đây',
       },
       xAxis: {
         categories: [

@@ -8,6 +8,7 @@ use Cart;
 use App\Models\Bill, App\Models\Payment, App\Models\Product;
 use App\Models\CodeDiscount;
 use Carbon\Carbon;
+use App\Helper\Helper;
 
 class BillController extends Controller
 {
@@ -42,7 +43,7 @@ class BillController extends Controller
 			[
 				'customer' => 'required|min:6',
 				'phone' => 'required|min:10|max:10',
-				'address' => 'required|min:20',
+				'address' => 'required',
 				'province' => 'required',
 				'district' => 'required'
 			],
@@ -55,11 +56,11 @@ class BillController extends Controller
 				'phone.min' => 'Số điện thoại không hợp lệ',
 				'phone.max' => 'Số điện thoại không hợp lệ',
 				'address.required' => 'Bạn chưa nhập địa chỉ',
-				'address.min' => 'Địa chỉ không đầy đủ',
 			]
 		);
+		$strCode = Helper::convert_vi_to_en($req->code);
 		if (count($cart) > 0) {
-			$code = CodeDiscount::where("code", $req->code)->first();
+			$code = CodeDiscount::where("code", $strCode)->first();
 			$now = Carbon::now("Asia/Ho_Chi_Minh");
 			$bill->customer = $req->customer;
 			if ($code != null && $code->time > 0 && $code->min < Cart::getTotal() && $code->expire > $now) {

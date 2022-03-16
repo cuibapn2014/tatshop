@@ -11,12 +11,13 @@
             href="admin/dashboard/danh-gia-tu-khach-hang"><i class="fas fa-comments fa-7x text-info w-100 mb-2"></i>
             Đánh giá từ khách
             hàng</a></div>
-            <br>
-            <button class="btn btn-warning my-2" onclick="location.href='{{ url()->previous()}}'">Trở lại</button>
+    <br>
+    <button class="btn btn-warning my-2" onclick="location.href='{{ url()->previous()}}'">Trở lại</button>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">ID</th>
+                <th scope="col">Hình ảnh</th>
                 <th scope="col">Tên khách hàng</th>
                 <th scope="col">Email</th>
                 <th scope="col">Quyền</th>
@@ -26,18 +27,19 @@
         <tbody>
 
             @foreach($customer as $customer)
+            @php
+            $urlImage = str_contains($customer->image,"https") == false ? "./image/".$customer->image :
+            $customer->image;
+            @endphp
             <tr>
                 <th scope="row">{{$customer->id}}</th>
+                <td><img class="rounded-circle" height="50px" width="50px" src="{{$urlImage}}"
+                        alt="{{$customer->name}}" /></td>
                 <td>{{$customer->name}}</td>
                 <td>{{$customer->email}}</td>
                 <td>
                     @php
-                    switch($customer->level)
-                    {
-                    case 0:echo 'Khách hàng';break;
-                    case 1:echo 'Admin';break;
-                    default: echo 'Unknown';break;
-                    }
+                    changeRole($customer->level);
                     @endphp
                 </td>
                 <td>
@@ -72,6 +74,16 @@
         </tbody>
     </table>
 </div>
+@php
+function changeRole($numRole){
+switch($numRole)
+{
+case 0:echo 'Khách hàng';break;
+case 1:echo 'Admin';break;
+default: echo 'Unknown';break;
+}
+}
+@endphp
 @endsection
 @section('title')
 Quản lý khách hàng

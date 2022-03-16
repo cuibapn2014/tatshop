@@ -30,16 +30,21 @@
         </div>
 
     </div>
-    <div class="col-lg-6 col-md-12 col-sm-12 border add-card float-left p-2">
+    <div class="col-lg-6 col-md-12 col-sm-12 border add-card float-left p-2 bg-light">
         <div class="col-12 text-left p-0">
             <h2 class="display-4" style="font-size:27px">{{$product->title}}</h2>
         </div>
         <div class="col-12 border-bottom m-2 p-0 border-dark d-flex flex-row justify-content-between">
             <p class="mb-1">
-                <i class="fas fa-warehouse"></i> Còn {{$product->qty}} cái
+                <i class="fas fa-warehouse"></i> 
+                @if($product->qty > 0) 
+                Còn hàng
+                @else
+                Hết hàng
+                @endif
             <p>
                 <i class="bi bi-cart-check-fill"></i>
-                {{$product->sold}} cái
+                {{$product->sold > 0 ? $product->sold : 0}} cái
             </p>
             </p>
             @if($product->discount > 0)
@@ -286,7 +291,7 @@
                     <p class="p-1 mb-0 font-weight-bold text-info fs-5">
                         @if($ran->discount > 0)
                         {{number_format($ran->price * (1-($ran->discount / 100)))}}<u>đ</u><br />
-                        <s class="font-weight-light">{{number_format($ran->price)}}<u>đ</u></s>
+                        <s class="font-weight-light text-dark fs-6">{{number_format($ran->price)}}<u>đ</u></s>
                         @else
                         {{number_format($ran->price)}}<u>đ</u>
                         @endif
@@ -372,7 +377,7 @@
 {{$product->title}} - TAT SHOP
 @endsection
 @section('seo')
-<meta property="og:url" content="{{asset('')}}san-pham/{{$product->id}}/{{$product->str_slug}}" />
+<meta property="og:url" content="{{asset('san-pham')}}/{{$product->id}}/{{$product->str_slug}}" />
 <meta property="og:type" content="article" />
 <meta property="og:keyword" content="{{$product->keyword}}" />
 <meta property="og:title" content="{{$product->title}}" />
