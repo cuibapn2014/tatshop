@@ -74,6 +74,8 @@ class BillController extends Controller
 					$bill->total = Cart::getTotal() * (1 - $code->discount / 100);
 					$bill->discount = $code->discount;
 				}
+				$code->time--;
+				$code->save();
 			} else {
 				if (Cart::getTotal() >= 300000 && Cart::getTotal() <= 1000000) {
 					$bill->total = Cart::getTotal() * 0.95;
@@ -105,8 +107,10 @@ class BillController extends Controller
 				$payment->status = 0;
 				$payment->save();
 			}
+			$date = Carbon::parse($bill->created_at);
+			$urlInvoice = "/invoice/tsi".$date->format('i').$date->format('Y').$date->format('m').$bill->id;
 			Cart::clear();
-			return back()->with('success', 'Đặt hàng thành công');
+			return redirect($urlInvoice)->with('success', 'Đặt hàng thành công');
 		} else {
 			return back()->with('danger', 'Giỏ hàng của bạn hiện chưa có sản phẩm !');
 		}
@@ -124,6 +128,7 @@ class BillController extends Controller
 		$payment = payment::where('code_bill', $id)->orderBy('id', 'desc')->get();
 		$box = payment::where('status', 0)->get();
 		$bill = bill::find($id);
+		$bill->timestamps = false;
 		if ($bill->stt == 1) {
 			$bill->stt = 2;
 			foreach ($payment as $p) {

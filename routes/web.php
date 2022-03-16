@@ -138,6 +138,7 @@ Route::get('ajaxLike/{id}', 'MainController@getAjaxLike');
 Route::get('getAjaxLike/{id}', 'MainController@getAjaxLikeCurrent');
 Route::get('updateCart/{id}/{qty}', 'CartController@update');
 Route::get('send-mail/{id}', 'EmailController@sendEmail')->middleware('check.admin');
+Route::get('invoice/{id}', 'EmailController@detailInvoice');
 Route::get('notification', 'EmailController@sendEmailOrder');
 
 //CALCULATE FEE

@@ -196,6 +196,7 @@ class AdminController extends Controller
 	public function getShip($id)
 	{
 		$bills = bill::find($id);
+		$bills->timestamps = false;
 		if ($bills->stt == 2) {
 			$bills->stt = 3;
 		} elseif ($bills->stt == 3) {

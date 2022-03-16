@@ -137,6 +137,7 @@
     <script type="text/javascript" src="js/countdown.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript" src="js/jquery.js"></script>
+    <script src="/js/home/header.js" defer></script>
 </body>
 
 </html>

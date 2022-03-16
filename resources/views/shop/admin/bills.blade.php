@@ -32,7 +32,9 @@
     <div class="col-lg-3 col-md-6 col-sm-12 border p-2 m-1 bg-light item-bill" style="height:auto"
         data-status="{{$bill->stt}}" data-customer="{{$bill->customer}}">
         <div class="col-12">
+            @php $date = \Carbon\Carbon::parse($bill->updated_at) @endphp
             <p class="mb-1" style="font-size:22px">{{$bill->customer}}</p>
+            <p class="mb-1 font-weight-bold style="font-size:18px">#TSI{{$date->format('i').$date->format('Y').$date->format('m').$bill->id}}</p>
             <p class="mb-1"><i class="fas fa-phone text-info"></i> {{$bill->phone}}</p>
             <p class="mb-1"><i class="bi bi-house-fill"></i> {{$bill->address}}</p>
             @if($bill->email != null)

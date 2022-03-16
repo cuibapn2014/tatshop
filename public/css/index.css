@@ -386,6 +386,7 @@ text-align: center;
 	padding:12px 0px 0px 0px;
 	border-radius:50%;
 	background:#117a8b;
+	z-index: 50;
 }
 
 #_event-1{

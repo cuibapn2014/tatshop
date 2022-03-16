@@ -22,6 +22,9 @@
             <li class="nav-item font-weight-normal">
                 <a class="nav-link fs-6 black-mode" href="ve-chung-toi">VỀ CHÚNG TÔI</a>
             </li>
+            <li class="nav-item font-weight-normal">
+                <a class="nav-link fs-6 black-mode search-invoice" href="#">TRA CỨU HÓA ĐƠN</a>
+            </li>
         </ul>
     </div>
     <div class="float-right d-flex flex-row-reverse flex-nowrap align-items-center">
@@ -101,6 +104,9 @@
                 <li class="font-weight-light p-2">
                     <a class="item-nav" href="ve-chung-toi">VỀ CHÚNG TÔI</a>
                 </li>
+                <li class="font-weight-light p-2">
+                    <a class="item-nav search-invoice" href="#">TRA CỨU HÓA ĐƠN</a>
+                </li>
                 @if(!Auth::check())
                 <div>
                     <a href="/login"><button class="btn btn-outline-info p-2 text-center">Đăng Nhập</button></a>
@@ -113,4 +119,9 @@
             </ul>
         </div>
     </div>
+</div>
+<div class="field-invoice position-fixed w-100 bg-info py-3 d-flex flex-row flex-nowrap d-none" style="top:0; left:0;height: 75px; z-index: 100;">
+<input class="mx-2 form-control col-7 enter-invoice" type="text" name="invoice-customer" placeholder="Mã hóa đơn">
+<button class="btn btn-light rounded text-center align-items-center btn-search-invoice">Tìm kiếm</button>
+<span class="close-search-invoice text-white position-absolute fs-3" style="top:10px; right:10px;cursor:pointer;"><i class="bi bi-x-circle-fill"></i></span>
 </div>

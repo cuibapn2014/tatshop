@@ -6,8 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Payment;
-use App\Bill;
+use App\Models\Payment;
+use App\Models\Bill;
 
 class MailNotify extends Mailable
 {
